@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		126E70A31C3A3C7E0062C8F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70A21C3A3C7E0062C8F6 /* main.m */; };
+		126E70A61C3A3C7E0062C8F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70A51C3A3C7E0062C8F6 /* AppDelegate.m */; };
+		126E70A91C3A3C7E0062C8F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70A81C3A3C7E0062C8F6 /* ViewController.m */; };
+		126E70AC1C3A3C7E0062C8F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 126E70AA1C3A3C7E0062C8F6 /* Main.storyboard */; };
+		126E70AE1C3A3C7E0062C8F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 126E70AD1C3A3C7E0062C8F6 /* Assets.xcassets */; };
+		126E70B11C3A3C7E0062C8F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 126E70AF1C3A3C7E0062C8F6 /* LaunchScreen.storyboard */; };
+		126E70BC1C3A3C7E0062C8F6 /* GiftsayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70BB1C3A3C7E0062C8F6 /* GiftsayTests.m */; };
+		126E70C71C3A3C7E0062C8F6 /* GiftsayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70C61C3A3C7E0062C8F6 /* GiftsayUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		126E70B81C3A3C7E0062C8F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126E70961C3A3C7E0062C8F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 126E709D1C3A3C7E0062C8F6;
+			remoteInfo = Giftsay;
+		};
+		126E70C31C3A3C7E0062C8F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126E70961C3A3C7E0062C8F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 126E709D1C3A3C7E0062C8F6;
+			remoteInfo = Giftsay;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		126E709E1C3A3C7E0062C8F6 /* Giftsay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giftsay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		126E70A21C3A3C7E0062C8F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		126E70A41C3A3C7E0062C8F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		126E70A51C3A3C7E0062C8F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		126E70A71C3A3C7E0062C8F6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		126E70A81C3A3C7E0062C8F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		126E70AB1C3A3C7E0062C8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		126E70AD1C3A3C7E0062C8F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		126E70B01C3A3C7E0062C8F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		126E70B21C3A3C7E0062C8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		126E70B71C3A3C7E0062C8F6 /* GiftsayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftsayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		126E70BB1C3A3C7E0062C8F6 /* GiftsayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftsayTests.m; sourceTree = "<group>"; };
+		126E70BD1C3A3C7E0062C8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		126E70C21C3A3C7E0062C8F6 /* GiftsayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftsayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		126E70C61C3A3C7E0062C8F6 /* GiftsayUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftsayUITests.m; sourceTree = "<group>"; };
+		126E70C81C3A3C7E0062C8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		126E709B1C3A3C7E0062C8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70B41C3A3C7E0062C8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70BF1C3A3C7E0062C8F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		126E70951C3A3C7E0062C8F6 = {
+			isa = PBXGroup;
+			children = (
+				126E70A01C3A3C7E0062C8F6 /* Giftsay */,
+				126E70BA1C3A3C7E0062C8F6 /* GiftsayTests */,
+				126E70C51C3A3C7E0062C8F6 /* GiftsayUITests */,
+				126E709F1C3A3C7E0062C8F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		126E709F1C3A3C7E0062C8F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				126E709E1C3A3C7E0062C8F6 /* Giftsay.app */,
+				126E70B71C3A3C7E0062C8F6 /* GiftsayTests.xctest */,
+				126E70C21C3A3C7E0062C8F6 /* GiftsayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		126E70A01C3A3C7E0062C8F6 /* Giftsay */ = {
+			isa = PBXGroup;
+			children = (
+				126E70A41C3A3C7E0062C8F6 /* AppDelegate.h */,
+				126E70A51C3A3C7E0062C8F6 /* AppDelegate.m */,
+				126E70A71C3A3C7E0062C8F6 /* ViewController.h */,
+				126E70A81C3A3C7E0062C8F6 /* ViewController.m */,
+				126E70AA1C3A3C7E0062C8F6 /* Main.storyboard */,
+				126E70AD1C3A3C7E0062C8F6 /* Assets.xcassets */,
+				126E70AF1C3A3C7E0062C8F6 /* LaunchScreen.storyboard */,
+				126E70B21C3A3C7E0062C8F6 /* Info.plist */,
+				126E70A11C3A3C7E0062C8F6 /* Supporting Files */,
+			);
+			path = Giftsay;
+			sourceTree = "<group>";
+		};
+		126E70A11C3A3C7E0062C8F6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				126E70A21C3A3C7E0062C8F6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		126E70BA1C3A3C7E0062C8F6 /* GiftsayTests */ = {
+			isa = PBXGroup;
+			children = (
+				126E70BB1C3A3C7E0062C8F6 /* GiftsayTests.m */,
+				126E70BD1C3A3C7E0062C8F6 /* Info.plist */,
+			);
+			path = GiftsayTests;
+			sourceTree = "<group>";
+		};
+		126E70C51C3A3C7E0062C8F6 /* GiftsayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				126E70C61C3A3C7E0062C8F6 /* GiftsayUITests.m */,
+				126E70C81C3A3C7E0062C8F6 /* Info.plist */,
+			);
+			path = GiftsayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		126E709D1C3A3C7E0062C8F6 /* Giftsay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 126E70CB1C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "Giftsay" */;
+			buildPhases = (
+				126E709A1C3A3C7E0062C8F6 /* Sources */,
+				126E709B1C3A3C7E0062C8F6 /* Frameworks */,
+				126E709C1C3A3C7E0062C8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Giftsay;
+			productName = Giftsay;
+			productReference = 126E709E1C3A3C7E0062C8F6 /* Giftsay.app */;
+			productType = "com.apple.product-type.application";
+		};
+		126E70B61C3A3C7E0062C8F6 /* GiftsayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 126E70CE1C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "GiftsayTests" */;
+			buildPhases = (
+				126E70B31C3A3C7E0062C8F6 /* Sources */,
+				126E70B41C3A3C7E0062C8F6 /* Frameworks */,
+				126E70B51C3A3C7E0062C8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				126E70B91C3A3C7E0062C8F6 /* PBXTargetDependency */,
+			);
+			name = GiftsayTests;
+			productName = GiftsayTests;
+			productReference = 126E70B71C3A3C7E0062C8F6 /* GiftsayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		126E70C11C3A3C7E0062C8F6 /* GiftsayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 126E70D11C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "GiftsayUITests" */;
+			buildPhases = (
+				126E70BE1C3A3C7E0062C8F6 /* Sources */,
+				126E70BF1C3A3C7E0062C8F6 /* Frameworks */,
+				126E70C01C3A3C7E0062C8F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				126E70C41C3A3C7E0062C8F6 /* PBXTargetDependency */,
+			);
+			name = GiftsayUITests;
+			productName = GiftsayUITests;
+			productReference = 126E70C21C3A3C7E0062C8F6 /* GiftsayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		126E70961C3A3C7E0062C8F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = nick_beibei;
+				TargetAttributes = {
+					126E709D1C3A3C7E0062C8F6 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					126E70B61C3A3C7E0062C8F6 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 126E709D1C3A3C7E0062C8F6;
+					};
+					126E70C11C3A3C7E0062C8F6 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 126E709D1C3A3C7E0062C8F6;
+					};
+				};
+			};
+			buildConfigurationList = 126E70991C3A3C7E0062C8F6 /* Build configuration list for PBXProject "Giftsay" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 126E70951C3A3C7E0062C8F6;
+			productRefGroup = 126E709F1C3A3C7E0062C8F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				126E709D1C3A3C7E0062C8F6 /* Giftsay */,
+				126E70B61C3A3C7E0062C8F6 /* GiftsayTests */,
+				126E70C11C3A3C7E0062C8F6 /* GiftsayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		126E709C1C3A3C7E0062C8F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126E70B11C3A3C7E0062C8F6 /* LaunchScreen.storyboard in Resources */,
+				126E70AE1C3A3C7E0062C8F6 /* Assets.xcassets in Resources */,
+				126E70AC1C3A3C7E0062C8F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70B51C3A3C7E0062C8F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70C01C3A3C7E0062C8F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		126E709A1C3A3C7E0062C8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126E70A91C3A3C7E0062C8F6 /* ViewController.m in Sources */,
+				126E70A61C3A3C7E0062C8F6 /* AppDelegate.m in Sources */,
+				126E70A31C3A3C7E0062C8F6 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70B31C3A3C7E0062C8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126E70BC1C3A3C7E0062C8F6 /* GiftsayTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		126E70BE1C3A3C7E0062C8F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126E70C71C3A3C7E0062C8F6 /* GiftsayUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		126E70B91C3A3C7E0062C8F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 126E709D1C3A3C7E0062C8F6 /* Giftsay */;
+			targetProxy = 126E70B81C3A3C7E0062C8F6 /* PBXContainerItemProxy */;
+		};
+		126E70C41C3A3C7E0062C8F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 126E709D1C3A3C7E0062C8F6 /* Giftsay */;
+			targetProxy = 126E70C31C3A3C7E0062C8F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		126E70AA1C3A3C7E0062C8F6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				126E70AB1C3A3C7E0062C8F6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		126E70AF1C3A3C7E0062C8F6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				126E70B01C3A3C7E0062C8F6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		126E70C91C3A3C7E0062C8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		126E70CA1C3A3C7E0062C8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		126E70CC1C3A3C7E0062C8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Giftsay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.Giftsay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		126E70CD1C3A3C7E0062C8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Giftsay/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.Giftsay;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		126E70CF1C3A3C7E0062C8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GiftsayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.GiftsayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giftsay.app/Giftsay";
+			};
+			name = Debug;
+		};
+		126E70D01C3A3C7E0062C8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GiftsayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.GiftsayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giftsay.app/Giftsay";
+			};
+			name = Release;
+		};
+		126E70D21C3A3C7E0062C8F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GiftsayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.GiftsayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Giftsay;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		126E70D31C3A3C7E0062C8F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GiftsayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wjh.GiftsayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Giftsay;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		126E70991C3A3C7E0062C8F6 /* Build configuration list for PBXProject "Giftsay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126E70C91C3A3C7E0062C8F6 /* Debug */,
+				126E70CA1C3A3C7E0062C8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		126E70CB1C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "Giftsay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126E70CC1C3A3C7E0062C8F6 /* Debug */,
+				126E70CD1C3A3C7E0062C8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		126E70CE1C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "GiftsayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126E70CF1C3A3C7E0062C8F6 /* Debug */,
+				126E70D01C3A3C7E0062C8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		126E70D11C3A3C7E0062C8F6 /* Build configuration list for PBXNativeTarget "GiftsayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126E70D21C3A3C7E0062C8F6 /* Debug */,
+				126E70D31C3A3C7E0062C8F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 126E70961C3A3C7E0062C8F6 /* Project object */;
+}
