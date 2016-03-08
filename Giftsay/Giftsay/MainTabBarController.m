@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self _createSubViewControllers];
-//    [self _createViewControllers];
+    [self _createTabBarView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,21 +39,35 @@
     self.viewControllers = vcArray;
 }
 
-
-//#pragma mark - CreateSubVC 从storyBoard中创建五个viewController
-//
-//- (void)_createSubVc {
-//    
-//    NSArray *names = @[@"Home",@"Top",@"Run",@"Information",@"More"];
-//    NSMutableArray *vcArray = [[NSMutableArray alloc] init];
-//    for (NSString *name in names) {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:nil];
-//        UIViewController *vc = [storyboard instantiateInitialViewController];
-//        [vcArray addObject:vc];
+#pragma mark - 自定义TabBar
+- (void)_createTabBarView {
+    NSArray *imgNames = @[@"ic_tab_home_normal",@"ic_tab_select_normal",@"ic_tab_category_normal",@"ic_tab_profile_normal",@""];
+//    for (int i = 0; i<imgNames.count; i++) {
+//        UIBarButtonItem *buttonTtem = [[UIBarButtonItem alloc] init];
+//        buttonTtem.tag = 100+i;
+//        buttonTtem.image = [UIImage imageNamed:imgNames[i]];
+//        [self.tabBar addSubview:buttonTtem];
 //    }
-//    self.viewControllers = vcArray;
-//    
-//}
+    
+    NSArray *titles = @[@"",@"",@"",@"",@""];
+    
+    for (int i = 0; i<5; i++) {
+        CGFloat width = kWidth/5;
+        CGFloat height = self.tabBar.height;
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 0, width, height)];
+        [button setTitle:titles[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
+        [button setImage:[UIImage imageNamed:imgNames[i]] forState:UIControlStateNormal];
+
+        button.titleLabel.font = [UIFont systemFontOfSize:11];
+        //调整image title 位置
+        button.titleEdgeInsets = UIEdgeInsetsMake(30, -18, 0, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
+
+        [self.tabBar addSubview:button];
+    }
+}
 
 
 

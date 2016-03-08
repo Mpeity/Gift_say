@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideViewController">
+            <connections>
+                <outlet property="guideScroll" destination="JeH-E9-vhc" id="GKT-X3-rbo"/>
+                <outlet property="startButton" destination="TUW-tG-PG5" id="uDE-8b-uT3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeH-E9-vhc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUW-tG-PG5">
+                    <rect key="frame" x="98" y="508" width="125" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="PU3-HO-DCc"/>
+                        <constraint firstAttribute="width" constant="125" id="TfH-9V-Mdc"/>
+                    </constraints>
+                    <connections>
+                        <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="zJ0-JB-Scb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JeH-E9-vhc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0wm-IM-qX6"/>
+                <constraint firstAttribute="bottom" secondItem="TUW-tG-PG5" secondAttribute="bottom" constant="25" id="53z-lR-Xuw"/>
+                <constraint firstItem="JeH-E9-vhc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8NJ-u6-GWh"/>
+                <constraint firstAttribute="trailing" secondItem="JeH-E9-vhc" secondAttribute="trailing" id="Aed-ON-paA"/>
+                <constraint firstAttribute="bottom" secondItem="JeH-E9-vhc" secondAttribute="bottom" id="AlA-oN-3Vr"/>
+                <constraint firstItem="TUW-tG-PG5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="epz-Gg-sww"/>
+            </constraints>
+            <point key="canvasLocation" x="325" y="372"/>
+        </view>
+    </objects>
+</document>
