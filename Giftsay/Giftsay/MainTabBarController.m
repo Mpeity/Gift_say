@@ -29,43 +29,31 @@
 
 #pragma mark - 创建五个ViewController
 - (void)_createSubViewControllers {
-    NSArray *names = @[@"HomePage",@"Favorite",@"Classifiction",@"Individual",@"More"];
+    NSArray *names = @[@"HomePage",@"Favorite",@"Classifiction",@"Individual"];
     NSMutableArray *vcArray = [[NSMutableArray alloc] init];
     for (NSString *name in names) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:[NSBundle mainBundle]];
         BaseViewController *vc = [storyboard instantiateInitialViewController];
-        [vcArray addObject:vc];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [vcArray addObject:nav];
     }
     self.viewControllers = vcArray;
 }
 
 #pragma mark - 自定义TabBar
 - (void)_createTabBarView {
-    NSArray *imgNames = @[@"ic_tab_home_normal",@"ic_tab_select_normal",@"ic_tab_category_normal",@"ic_tab_profile_normal",@""];
-//    for (int i = 0; i<imgNames.count; i++) {
-//        UIBarButtonItem *buttonTtem = [[UIBarButtonItem alloc] init];
-//        buttonTtem.tag = 100+i;
-//        buttonTtem.image = [UIImage imageNamed:imgNames[i]];
-//        [self.tabBar addSubview:buttonTtem];
-//    }
-    
-    NSArray *titles = @[@"",@"",@"",@"",@""];
-    
-    for (int i = 0; i<5; i++) {
-        CGFloat width = kWidth/5;
-        CGFloat height = self.tabBar.height;
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 0, width, height)];
-        [button setTitle:titles[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
-        [button setImage:[UIImage imageNamed:imgNames[i]] forState:UIControlStateNormal];
-
-        button.titleLabel.font = [UIFont systemFontOfSize:11];
-        //调整image title 位置
-        button.titleEdgeInsets = UIEdgeInsetsMake(30, -18, 0, 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(-10, 20, 0, 0);
-
-        [self.tabBar addSubview:button];
+    NSArray *imgNames = @[@"ic_tab_home_normal",@"ic_tab_select_normal",@"ic_tab_category_normal",@"ic_tab_profile_normal"];
+    NSArray *selectedImgNames = @[@"ic_tab_home_selected",@"ic_tab_select_selected",@"ic_tab_category_selected.png",@"ic_tab_profile_selected"];
+    NSArray *titles = @[@"首页",@"热门",@"分类",@"个人"];
+    for (int i = 0; i<imgNames.count; i++) {
+        // 可以⾃自定义title、图⽚
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:imgNames[i]] tag:i];
+        //渲染保持原图
+        tabBarItem.selectedImage = [[UIImage imageNamed:selectedImgNames[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        //调整image title 位置 如果同时有image和label，那这时候image的上左下是相对于button，右边是相对于label的；title的上右下是相对于button，左边是相对于image的 top left bottom right
+        tabBarItem.imageInsets = UIEdgeInsetsMake(2, 2, 10, 2);
+        UIViewController *vc = self.viewControllers[i];
+        vc.tabBarItem = tabBarItem;
     }
 }
 

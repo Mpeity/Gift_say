@@ -8,6 +8,13 @@
 
 #import "BaseViewController.h"
 
-@interface FavoriteViewController : BaseViewController
+@interface FavoriteViewController : BaseViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+
+@property (nonatomic,strong) NSMutableDictionary *favoriteDic;
+
+@property (nonatomic,strong) NSMutableArray *favoriteArray;
+
+@property (nonatomic,strong) UICollectionView *favoriteCollectionView;
 
 @end
