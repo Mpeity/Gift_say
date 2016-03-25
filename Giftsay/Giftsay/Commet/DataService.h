@@ -23,6 +23,10 @@ typedef void(^BlockType)(id result);
              block:(BlockType)block; //接收到的数据的处理
 
 
++ (CGFloat)getHeight:(CGFloat)height;
+
+
+
 /*
 //+ (AFHTTPRequestOperation *)requestAFUrl:(NSString *)urlString
 //                              httpMethod:(NSString *)method

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gTV-IL-0wX" customClass="CommonCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="105"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="105"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U6i-6f-Odh">
+                        <rect key="frame" x="5" y="5" width="70" height="70"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENr-hv-Jwr">
+                        <rect key="frame" x="0.0" y="85" width="80" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1Ms-Pd-Zmr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="ENr-hv-Jwr" firstAttribute="top" secondItem="U6i-6f-Odh" secondAttribute="bottom" constant="10" id="Fke-jN-ZhN"/>
+                <constraint firstAttribute="trailing" secondItem="ENr-hv-Jwr" secondAttribute="trailing" id="QV7-aM-dzj"/>
+                <constraint firstAttribute="bottom" secondItem="ENr-hv-Jwr" secondAttribute="bottom" id="cbT-lr-kyC"/>
+                <constraint firstItem="U6i-6f-Odh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="izi-7p-qg8"/>
+                <constraint firstAttribute="trailing" secondItem="U6i-6f-Odh" secondAttribute="trailing" constant="5" id="lfY-tm-uls"/>
+                <constraint firstItem="ENr-hv-Jwr" firstAttribute="top" secondItem="U6i-6f-Odh" secondAttribute="bottom" constant="5" id="rHA-KN-dgu"/>
+                <constraint firstItem="U6i-6f-Odh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="w41-WY-YU7"/>
+                <constraint firstItem="ENr-hv-Jwr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="x8I-SB-Lfr"/>
+            </constraints>
+            <size key="customSize" width="82" height="120"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="rHA-KN-dgu"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="icon_imgView" destination="U6i-6f-Odh" id="JS1-Zr-mY9"/>
+                <outlet property="nameLabel" destination="ENr-hv-Jwr" id="lft-Eq-gCv"/>
+            </connections>
+            <point key="canvasLocation" x="333" y="303"/>
+        </collectionViewCell>
+    </objects>
+</document>

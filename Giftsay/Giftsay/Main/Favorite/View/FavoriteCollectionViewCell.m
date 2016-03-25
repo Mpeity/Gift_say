@@ -7,7 +7,6 @@
 //
 
 #import "FavoriteCollectionViewCell.h"
-#import "UIImageView+WebCache.h"
 
 @implementation FavoriteCollectionViewCell
 

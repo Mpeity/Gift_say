@@ -87,6 +87,12 @@
     
 }
 
++ (CGFloat)getHeight:(CGFloat)height {
+    return height;
+}
+
+
+
 /*
 + (AFHTTPRequestOperation *)requestAFUrl:(NSString *)urlString
                               httpMethod:(NSString *)method

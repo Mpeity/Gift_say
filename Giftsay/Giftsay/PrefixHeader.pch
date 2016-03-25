@@ -18,6 +18,8 @@
 #import "UIViewExt.h"
 #import "UIColor+Wonderful.h"
 #import "DataService.h"
+#import "UIImageView+WebCache.h"
+
 
 
 #endif /* PrefixHeader_pch */

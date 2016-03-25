@@ -388,4 +388,9 @@
 
 @interface CommonModel : NSObject
 
+@property (nonatomic,assign) NSInteger order;
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,strong) NSMutableArray *groupArray;
+@property (nonatomic,assign) NSInteger identity;
+
 @end

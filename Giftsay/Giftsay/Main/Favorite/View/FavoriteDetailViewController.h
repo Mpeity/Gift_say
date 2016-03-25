@@ -14,4 +14,4 @@
 @property (nonatomic,strong) FavoriteModel *favoriteModel;
 
 
-@end
+@end      

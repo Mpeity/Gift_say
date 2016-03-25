@@ -10,6 +10,10 @@
 #import "StrateTableViewCell.h"
 #import "SpecialModel.h"
 #import "UIImageView+WebCache.h"
+#import "CommonModel.h"
+#import "ChannelsModel.h"
+#import "TotalViewController.h"
+#import "HeaderViewController.h"
 
 
 static NSString *tableCellId = @"tableCellId";
@@ -20,15 +24,18 @@ static NSString *collectionCellId = @"collectionCellId";
     UITableView *_strategTableView;
     UIView *_headerView;
     NSMutableArray *_specialArray;
+    NSMutableArray *_commonArray;
     UICollectionView *_specialCollectionView;
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self _funcInitialize];
-        [self _loadData];
         [self _createSubviews];
         [self _createHeaderView];
+        [self _loadCommonData];
+        [self _loadHeaderData];
     }
     return self;
 }
@@ -36,19 +43,27 @@ static NSString *collectionCellId = @"collectionCellId";
 // 初始化数组、字典。。。
 - (void)_funcInitialize {
     _specialArray = [[NSMutableArray alloc] init];
+    _commonArray = [[NSMutableArray alloc] init];
+
 }
 
 #pragma mark - createSubviews
 - (void)_createSubviews {
-    _strategTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
+
+//    [self addSubview:_headerView];
+    _strategTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight) style:UITableViewStylePlain];
     [_strategTableView registerClass:[StrateTableViewCell class] forCellReuseIdentifier:tableCellId];
     _strategTableView.delegate = self;
     _strategTableView.dataSource = self;
-    _strategTableView.backgroundColor = [UIColor ivoryColor];
+    _strategTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _strategTableView.showsVerticalScrollIndicator = NO;
+    _strategTableView.backgroundColor = [UIColor aliceBlue];
     [self addSubview:_strategTableView];
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight*0.20)];
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight*0.20)];
     _headerView.backgroundColor = [UIColor whiteColor];
-    [_strategTableView addSubview:_headerView];
+    _strategTableView.tableHeaderView = _headerView;
+    _strategTableView.contentOffset = CGPointMake(0, 0);
+    _strategTableView.contentSize = CGSizeMake(kWidth, 1500);
 
 }
 
@@ -89,7 +104,7 @@ static NSString *collectionCellId = @"collectionCellId";
 //@property (nonatomic,copy) NSString *banner_image_url; //
 //@property (nonatomic,copy) NSString *subtitle; //
 //@property (nonatomic,copy) NSString *title; //
-- (void)_loadData {
+- (void)_loadHeaderData {
     [DataService requestUrl:@"http://api.liwushuo.com/v1/collections?channel=104" httpMethod:@"GET" params:nil block:^(id result) {
 //        NSLog(@"%@",result);
         NSArray *dataArray = [[result objectForKey:@"data"] objectForKey:@"collections"];
@@ -107,32 +122,97 @@ static NSString *collectionCellId = @"collectionCellId";
         [_specialCollectionView reloadData];
     }];
     
+
+}
+
+- (void)_loadCommonData {
+    //    @property (nonatomic,assign) NSInteger order;
+    //    @property (nonatomic,copy) NSString *name;
+    //    @property (nonatomic,assign) NSInteger *group_id;
+    //    @property (nonatomic,assign) NSString *identity;
+    //    @property (nonatomic,copy) NSString *icon_url;
+    //    @property (nonatomic,copy) NSString *icon_name;
+
     [DataService requestUrl:CHANNELURL httpMethod:@"GET" params:nil block:^(id result) {
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
+        NSArray *commonArray = [[result objectForKey:@"data"] objectForKey:@"channel_groups"];
+        for (NSDictionary *dic in commonArray) {
+            CommonModel *commonModel = [[CommonModel alloc] init];
+            commonModel.groupArray = [[NSMutableArray alloc] init];
+            commonModel.order = [[dic objectForKey:@"order"] integerValue];
+            commonModel.name = [dic objectForKey:@"name"];
+            commonModel.identity = [[dic objectForKey:@"id"] integerValue];
+            NSArray *channelsArray = [dic objectForKey:@"channels"];
+            for (NSDictionary *dataDic in channelsArray) {
+                ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
+                channelsModel.group_id = [[dataDic objectForKey:@"group_id"] integerValue];
+                channelsModel.identity = [[dataDic objectForKey:@"id"] integerValue];
+                channelsModel.icon_name = [dataDic objectForKey:@"name"];
+                channelsModel.icon_url = [dataDic objectForKey:@"icon_url"];
+                channelsModel.items_count = [[dataDic objectForKey:@"items_count"] integerValue];
+                [commonModel.groupArray addObject:channelsModel];
+            }
+            [_commonArray addObject:commonModel];
+        }
+        [_strategTableView reloadData];
     }];
-    
-    
 }
 
-#pragma mark - buttonAction
+#pragma mark - buttonAction(查看全部)
 - (void)allButtonAction:(UIButton *)button {
-    NSLog(@"111111");
+    TotalViewController *totalVC = [[TotalViewController alloc] init];
+    UIResponder *next = self.nextResponder;
+    while (next != nil) {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            //沿着响应者链可以找到vc
+            UIViewController *vc = (UIViewController *)next;
+            [vc.navigationController pushViewController:totalVC animated:NO];
+            return;
+        }
+        next = next.nextResponder;
+    }
 }
-
-
 
 
 #pragma mark - tableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return _commonArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StrateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellId forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor aliceBlue];
+    cell.commonModel = _commonArray[indexPath.row];
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return 535;
+    }
+    if (indexPath.row == 1) {
+        return 300;
+    }
+    if (indexPath.row == 2) {
+        return 300;
+    }
+    if (indexPath.row == 3) {
+        return 300;
+    }
+    return 0;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y<0) {
+        CGFloat y = 0;
+        scrollView.contentOffset = CGPointMake(0, y);
+    }
+}
 
 #pragma mark - CollectionViewDelegte
 
@@ -143,8 +223,8 @@ static NSString *collectionCellId = @"collectionCellId";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionCellId forIndexPath:indexPath];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:cell.bounds];
-    SpecialModel *specialMode = _specialArray[indexPath.row];
-    [imgView sd_setImageWithURL:[NSURL URLWithString:specialMode.banner_image_url]];
+    SpecialModel *specialModel = _specialArray[indexPath.row];
+    [imgView sd_setImageWithURL:[NSURL URLWithString:specialModel.banner_image_url]];
     [cell.contentView addSubview:imgView];
     return cell;
 }
@@ -154,7 +234,22 @@ static NSString *collectionCellId = @"collectionCellId";
 }
 
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HeaderViewController *headerVC = [[HeaderViewController alloc] init];
+    SpecialModel *specialModel = _specialArray[indexPath.row];
+    headerVC.specialModel = specialModel;
+    UIResponder *next = self.nextResponder;
+    while (next != nil) {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            //沿着响应者链可以找到vc
+            UIViewController *vc = (UIViewController *)next;
+            [vc.navigationController pushViewController:headerVC animated:NO];
+            return;
+        }
+        next = next.nextResponder;
+    }
 
+}
 
 
 

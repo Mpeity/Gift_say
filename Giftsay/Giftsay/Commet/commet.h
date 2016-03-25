@@ -23,16 +23,16 @@
 // 热门礼物
 #define HOTURL @"http://api.liwushuo.com/v1/item_channels/1/items?"
 
-// 分类专题
+// 分类专题 (分类 查看全部按钮)
 #define SPECIALURL @"http://api.liwushuo.com/v1/collections?channel=104&limit=%@&offset=%@"
 
-// 专题详情
-#define SPECIALDETAIURL @"http://api.liwushuo.com/v1/collections/%@/posts?channel=104&limit=20&offset=%@"
+// 专题详情 http://api.liwushuo.com/v1/collections/227/posts?channel=104&limit=5&offset=0  227 是id
+#define SPECIALDETAIURL @"http://api.liwushuo.com/v1/collections/%@/posts?channel=104&limit=%@&offset=%@"
 
-// 分类中的各种图标
+// 分类中的各种图标 （分类页面  品类等各种图标）
 #define CHANNELURL @"http://api.liwushuo.com/v1/channel_groups/all"
 
-// 分类个类的详情
+// 分类个类的详情 “http://api.liwushuo.com/v1/channels/id/items?channels=104&limit=10&offset=0”
 #define CHANNELDETAILURL @"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=20&offset=%@"
 
 // 礼物详情

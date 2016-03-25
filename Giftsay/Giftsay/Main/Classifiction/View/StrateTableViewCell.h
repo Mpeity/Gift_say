@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SpecialModel.h"
+#import "CommonModel.h"
+@interface StrateTableViewCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@interface StrateTableViewCell : UITableViewCell
+@property (nonatomic,strong) UILabel *headerLabel;
 
-@property (nonatomic,strong) SpecialModel *specialModel;
+@property (nonatomic,strong) UICollectionView *collectionView;
+
+@property (nonatomic,strong) UIView *cellView;
+
+@property (nonatomic,strong) CommonModel *commonModel;
+
 
 @end
