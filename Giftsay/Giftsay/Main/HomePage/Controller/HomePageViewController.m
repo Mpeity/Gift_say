@@ -9,16 +9,27 @@
 #import "HomePageViewController.h"
 #import "LogInViewController.h"
 #import "SearchViewController.h"
-#import "FuncCollectionView.h"
+#import "HeaderView.h"
 #import "ClassificationCollectionView.h"
+#import "HeaderModel.h"
+#import "FuncTableView.h"
+#import "FuncTableViewCell.h"
+#import "HeaderView.h"
+
+
+static NSString *funcTableCellId = @"funcTableCellId";
 
 @interface HomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *_classficationView; //头部分类view
-    FuncCollectionView *_funcCollectionView; // 各个分类对应的CollectionView视图
+    UICollectionView *_funcCollectionView; // 各个分类对应的CollectionView视图
     ClassificationCollectionView *_classficationCollectionView; //
-    NSMutableDictionary *_headerDic; // 
-    
+    NSMutableDictionary *_headerDic; //
+    FuncTableView *_funcTableView;
+    NSMutableArray *_array;
+    HeaderView *_headerView;
+    NSArray *_textArray;
+
     
 }
 
@@ -30,8 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _headerDic = [[NSMutableDictionary alloc] init];
-    
-    
+    _array = [[NSMutableArray alloc] init];
     [self _createSubviews];
 //    [self _loadDada];
 }
@@ -57,27 +67,34 @@
     
     // 头部分类view
     _classficationView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight*0.07)];
-//    _classficationView.backgroundColor = [UIColor purpleColor];
+    _classficationView.backgroundColor = [UIColor purpleColor];
     [self _createClassificationView];
     [self.view addSubview:_classficationView];
+    [self _createClassificationView];
+    
+    
+
     
     
     
     
-    // 创建每个CollectionView视图
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc ]init];
-    layout.itemSize = CGSizeMake(kWidth, kHeight);
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _funcCollectionView = [[FuncCollectionView alloc] initWithFrame:CGRectMake(0, kHeight*0.07, kWidth, kHeight*0.93) collectionViewLayout:layout];
-    [self.view addSubview:_funcCollectionView];
     
     
 }
 
 #pragma mark - 加载数据
 - (void)_loadDada {
-    
-
+    [DataService requestUrl:BANNERURL httpMethod:@"GET" params:nil block:^(id result) {
+        NSArray *bannersArray = [[result objectForKey:@"data"] objectForKey:@"banners"];
+        for (NSDictionary *dic in bannersArray) {
+            HeaderModel *headerModel = [[HeaderModel alloc] init];
+            headerModel.image_url = [dic objectForKey:@"image_url"];
+            [_array addObject:headerModel];
+//            NSLog(@"%@",result);
+            _headerView.headerArray = _array;
+            NSLog(@"%@",_headerView.headerArray);
+        }
+    }];
 }
 
 #warning 头部collection还没完成
@@ -102,15 +119,17 @@
 //    _classficationCollectionView.delegate = self;
 //    _classficationCollectionView.dataSource = self;
     [_classficationView addSubview:_classficationCollectionView];
-//    _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
+    _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
+    
 }
+
+
 
 
 
 #pragma mark - funcButtonAction 
 - (void)funcButtonAction:(UIButton *)button {
     button.selected = !button.selected;
-
 }
 
 #pragma mark - navBarButtonAction

@@ -100,6 +100,8 @@
 @property (nonatomic,assign) NSInteger likes_count;
 @property (nonatomic,copy) NSString *content_url;
 @property (nonatomic,copy) NSString *cover_image_url;
+@property (nonatomic,assign) NSInteger identity; //
+
 
 
 @end

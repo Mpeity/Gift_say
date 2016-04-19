@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "BaseUIView.h"
 
 @interface HomePageViewController : BaseViewController
+
+@property (nonatomic,strong) BaseUIView *baseView;
 
 @end

@@ -23,7 +23,6 @@ static NSString *cellId = @"cellId";
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        
         [self _createSubviews];
     }
     return self;
@@ -35,6 +34,8 @@ static NSString *cellId = @"cellId";
     self.delegate = self;
     self.dataSource = self;    
 }
+
+
 
 
 
@@ -51,7 +52,21 @@ static NSString *cellId = @"cellId";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FuncCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    if (cell.tag == 0) {
+        cell.funcTableView.hidden = NO;
+        cell.headerView.hidden = NO;
+
+
+    } else {
+        [cell.funcTableView removeFromSuperview];
+        [cell.headerView removeFromSuperview];        
+    }
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 
 @end

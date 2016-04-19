@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HeaderView.h"
+
 
 @interface FuncTableView : UITableView
+
+@property (nonatomic,strong) HeaderView *headerView;
+@property (nonatomic,strong) NSMutableArray *array;
 
 @end

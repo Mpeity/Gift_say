@@ -51,7 +51,7 @@ static NSString *collectionCellId = @"collectionCellId";
 - (void)_createSubviews {
 
 //    [self addSubview:_headerView];
-    _strategTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight) style:UITableViewStylePlain];
+    _strategTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight-100) style:UITableViewStylePlain];
     [_strategTableView registerClass:[StrateTableViewCell class] forCellReuseIdentifier:tableCellId];
     _strategTableView.delegate = self;
     _strategTableView.dataSource = self;
@@ -189,13 +189,13 @@ static NSString *collectionCellId = @"collectionCellId";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 535;
+        return 420;
     }
     if (indexPath.row == 1) {
         return 300;
     }
     if (indexPath.row == 2) {
-        return 300;
+        return 535;
     }
     if (indexPath.row == 3) {
         return 300;

@@ -13,6 +13,8 @@
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UICollectionView *collectionView;
 
-@property (nonatomic,strong) NSMutableDictionary *headerDic;
+@property (nonatomic,strong) NSMutableArray *headerArray;
+
+
 
 @end

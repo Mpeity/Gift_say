@@ -102,27 +102,23 @@
     if (indexPath.row == 0) {
         cell.backgroundColor = [UIColor greenColor];
         textLabel.text = @"初中生";
-        imgView.image = [UIImage imageNamed:@"ic_old_next_green"];
+        imgView.image = [UIImage imageNamed:@"Xic_old_next_green"];
     } else if (indexPath.row == 1) {
         cell.backgroundColor = [UIColor peachRed];
         textLabel.text = @"高中生";
         imgView.image = [UIImage imageNamed:@"ic_old_next_red"];
-
     } else if (indexPath.row == 2) {
         cell.backgroundColor = [UIColor mediumOrchid];
         textLabel.text = @"大学生";
         imgView.image = [UIImage imageNamed:@"ic_old_next_purple"];
-
     } else if (indexPath.row == 3) {
         cell.backgroundColor = [UIColor mediumPink];
         textLabel.text = @"职场新人";
         imgView.image = [UIImage imageNamed:@"ic_old_next_pink"];
-
     } else {
         cell.backgroundColor = [UIColor orangeColor];
         textLabel.text = @"资深工作党";
         imgView.image = [UIImage imageNamed:@"ic_old_next_brown"];
-
     }
     return cell;
 }
