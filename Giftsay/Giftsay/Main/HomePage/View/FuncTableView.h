@@ -10,9 +10,9 @@
 #import "HeaderView.h"
 
 
-@interface FuncTableView : UITableView
+@interface FuncTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) HeaderView *headerView;
-@property (nonatomic,strong) NSMutableArray *array;
+@property (nonatomic,strong) NSMutableArray *itemArray;
 
 @end

@@ -37,35 +37,42 @@ static NSString *cellId = @"cellId";
 
 
 
-
+- (void)setAllArray:(NSMutableArray *)allArray {
+    if (_allArray != allArray) {
+        _allArray = allArray;
+    }
+}
 
 
 #pragma mark - Delegate
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 10;
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    NSLog(@"%lu",(unsigned long)self.allArray.count);
+    return self.allArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FuncCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    if (cell.tag == 0) {
+    cell.tag = indexPath.row;
+    if (indexPath.row == 0) {
         cell.funcTableView.hidden = NO;
         cell.headerView.hidden = NO;
-
-
+        cell.collectionView.hidden = YES;
     } else {
-        [cell.funcTableView removeFromSuperview];
-        [cell.headerView removeFromSuperview];        
+        cell.funcTableView.hidden = YES;
+        cell.headerView.hidden = YES;
+        cell.collectionView.hidden = NO;
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row != self.currentIndex) {
+        
+        [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        self.currentIndex = indexPath.row;
+        
+    }
 }
 
 

@@ -15,6 +15,8 @@
 
 @property (nonatomic,strong) NSMutableArray *headerArray;
 
+@property (nonatomic,strong) NSMutableArray *nextModelArray;
+
 
 
 @end

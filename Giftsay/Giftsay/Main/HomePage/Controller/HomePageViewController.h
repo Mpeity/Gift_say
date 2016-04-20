@@ -7,10 +7,8 @@
 //
 
 #import "BaseViewController.h"
-#import "BaseUIView.h"
 
-@interface HomePageViewController : BaseViewController
+@interface HomePageViewController : BaseViewController<UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (nonatomic,strong) BaseUIView *baseView;
 
 @end

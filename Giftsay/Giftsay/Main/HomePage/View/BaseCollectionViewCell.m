@@ -60,7 +60,7 @@
     if (baseModel != _baseModel) {
         _baseModel = baseModel;
     }
-    [self setNeedsDisplay];
+    [self setNeedsLayout];
 }
 
 

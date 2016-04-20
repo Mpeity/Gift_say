@@ -12,25 +12,29 @@ static NSString *cellID = @"cellID";
 
 
 @implementation ClassificationCollectionView
-{
-    NSArray *_textArray; //
 
-}
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
         
-        
+        [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellID];
+        self.backgroundColor = [UIColor  waterPink];
+        self.delegate = self;
+        self.dataSource = self;
     }
     return self;
 }
 
-
+- (void)setAllArray:(NSMutableArray *)allArray {
+    if (_allArray != allArray) {
+        _allArray = allArray;
+    }
+}
 
 
 #pragma mark - collectionView 代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _textArray.count;
+    return self.allArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -40,13 +44,39 @@ static NSString *cellID = @"cellID";
     }
     UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
     [cell.contentView addSubview:label];
-    label.text = _textArray[indexPath.row];
+    label.text = self.allArray[indexPath.row];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor blackColor];
     return cell;
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    
+    
+    
+    //targetContentOffset 目标偏移量
+    //targetContentOffset->x
+    
+    //调整 目标偏移
+    CGFloat itemWith = self.itemWidth;
+    CGFloat x = targetContentOffset->x;
+    NSInteger index = x/itemWith;// 5    x= 6      index  1
+    //安全处理
+    if (index < 0) {
+        index = 0;
+    } else if (index>= _allArray.count){
+        index = _allArray.count-1;
+    }
+    targetContentOffset->x = itemWith * index;  // 0
+    self.currentIndex = index;
+}
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row != self.currentIndex) {
+        [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        self.currentIndex = indexPath.row;
+    }
+}
 
 
 

@@ -9,20 +9,19 @@
 #import "HomePageViewController.h"
 #import "LogInViewController.h"
 #import "SearchViewController.h"
-#import "HeaderView.h"
 #import "ClassificationCollectionView.h"
 #import "HeaderModel.h"
 #import "FuncTableView.h"
-#import "FuncTableViewCell.h"
 #import "HeaderView.h"
+#import "FuncCollectionView.h"
 
-
+static NSString *cellId = @"cellId";
 static NSString *funcTableCellId = @"funcTableCellId";
 
 @interface HomePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIView *_classficationView; //头部分类view
-    UICollectionView *_funcCollectionView; // 各个分类对应的CollectionView视图
+    FuncCollectionView *_funcCollectionView; // 各个分类对应的CollectionView视图
     ClassificationCollectionView *_classficationCollectionView; //
     NSMutableDictionary *_headerDic; //
     FuncTableView *_funcTableView;
@@ -44,6 +43,9 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _array = [[NSMutableArray alloc] init];
     [self _createSubviews];
 //    [self _loadDada];
+    //增加观察者
+    [_funcCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
+    [_classficationCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,16 +73,25 @@ static NSString *funcTableCellId = @"funcTableCellId";
     [self _createClassificationView];
     [self.view addSubview:_classficationView];
     [self _createClassificationView];
+    _classficationView.backgroundColor = [UIColor purpleColor];
     
-    
-
-    
-    
-    
-    
-    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(kWidth, kHeight-_classficationView.height-64-49);
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _funcCollectionView = [[FuncCollectionView alloc] initWithFrame:CGRectMake(0, kHeight*0.07+64, kWidth, kHeight-_classficationView.height-64-49) collectionViewLayout:layout];
+    _funcCollectionView.backgroundColor = [UIColor clearColor];
+    _funcCollectionView.contentOffset = CGPointMake(0, 0);
+//    _funcCollectionView.delegate = self;
+//    _funcCollectionView.dataSource = self;
+    _funcCollectionView.pagingEnabled = YES;
+//    [_funcCollectionView registerClass:[FuncCollectionViewCell class] forCellWithReuseIdentifier:funcCellId];
+    [self.view addSubview:_funcCollectionView];
+    _funcCollectionView.allArray = [_textArray mutableCopy];
     
 }
+
 
 #pragma mark - 加载数据
 - (void)_loadDada {
@@ -90,9 +101,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
             HeaderModel *headerModel = [[HeaderModel alloc] init];
             headerModel.image_url = [dic objectForKey:@"image_url"];
             [_array addObject:headerModel];
-//            NSLog(@"%@",result);
             _headerView.headerArray = _array;
-            NSLog(@"%@",_headerView.headerArray);
         }
     }];
 }
@@ -100,9 +109,10 @@ static NSString *funcTableCellId = @"funcTableCellId";
 #warning 头部collection还没完成
 // 创建头部collectionView
 - (void)_createClassificationView {
+//    arrow_grey_down
     UIButton *funcButton = [[UIButton alloc] initWithFrame:CGRectMake(_classficationView.width-_classficationView.height, 0, _classficationView.height, _classficationView.height)];
-    [funcButton setImage:[UIImage imageNamed:@"arrow_index_up"] forState:UIControlStateNormal];
-    [funcButton setImage:[UIImage imageNamed:@"arrow_index_down"] forState:UIControlStateSelected];
+    [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_up"] forState:UIControlStateNormal];
+    [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_down"] forState:UIControlStateSelected];
     [funcButton addTarget:self action:@selector(funcButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -110,19 +120,34 @@ static NSString *funcTableCellId = @"funcTableCellId";
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((kWidth-funcButton.width)/6, _classficationView.height);
-//    layout.minimumInteritemSpacing = 3;
+    layout.minimumInteritemSpacing = 3;
     layout.minimumLineSpacing = 5;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _classficationCollectionView.itemWidth = _classficationView.height;
     _classficationCollectionView = [[ClassificationCollectionView alloc] initWithFrame:CGRectMake(0, 0, kWidth-funcButton.width, _classficationView.height) collectionViewLayout:layout];
-//    [_classficationCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellID];
-    _classficationCollectionView.backgroundColor = [UIColor  waterPink];
-//    _classficationCollectionView.delegate = self;
-//    _classficationCollectionView.dataSource = self;
     [_classficationView addSubview:_classficationCollectionView];
     _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
+    _classficationCollectionView.allArray = [_textArray mutableCopy];
     
 }
 
+
+#pragma mark - 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    NSNumber *number = [change objectForKey:@"new"];
+    NSInteger index = [number integerValue];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    //小标题动了
+    if ([object isKindOfClass:[ClassificationCollectionView class]] && _funcCollectionView.currentIndex != index) {
+        
+        [_funcCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        _funcCollectionView.currentIndex = index;
+    } else if ([object isKindOfClass:[FuncCollectionView class]] && _classficationCollectionView.currentIndex!= index){
+        [_classficationCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];        
+        _classficationCollectionView.currentIndex = index;
+    }
+    //更新 标题
+}
 
 
 

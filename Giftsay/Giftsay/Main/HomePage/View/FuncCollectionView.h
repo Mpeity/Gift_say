@@ -13,6 +13,9 @@
 
 @property (nonatomic,strong) NSMutableDictionary *funcDic; //
 
+@property (nonatomic,strong) NSMutableArray *allArray;
+
+@property (nonatomic,assign)NSInteger currentIndex;//记录 中间cell 的索引
 
 
 

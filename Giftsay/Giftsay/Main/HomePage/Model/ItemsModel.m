@@ -1,13 +1,13 @@
 //
-//  JXViewController.h
+//  ItemsModel.m
 //  Giftsay
 //
 //  Created by nick_beibei on 16/4/19.
 //  Copyright © 2016年 nick_beibei. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ItemsModel.h"
 
-@interface JXViewController : UIViewController
+@implementation ItemsModel
 
 @end

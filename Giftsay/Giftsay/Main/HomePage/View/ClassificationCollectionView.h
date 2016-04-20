@@ -13,7 +13,9 @@
 
 @property (nonatomic,strong) NSMutableDictionary *classificationDic;
 
-
+@property (nonatomic,assign) NSInteger currentIndex;
+@property (nonatomic,strong) NSMutableArray *allArray;
+@property (nonatomic,assign)CGFloat itemWidth;
 
 
 @end

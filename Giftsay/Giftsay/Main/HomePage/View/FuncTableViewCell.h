@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemsModel.h"
 
 @interface FuncTableViewCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
+
+@property (weak, nonatomic) IBOutlet UIButton *clickBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
+@property (nonatomic,strong) ItemsModel *itemsModel;
 @end
