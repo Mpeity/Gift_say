@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 @interface HomePageViewController : BaseViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (nonatomic,strong) NSMutableArray *allArray;
 
 
 @end

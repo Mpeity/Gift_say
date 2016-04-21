@@ -29,5 +29,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *idTableView;
 
+@property (nonatomic,strong) NSMutableArray *allMutaleArray;
+
+
 
 @end

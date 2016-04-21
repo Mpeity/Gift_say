@@ -27,7 +27,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
     FuncTableView *_funcTableView;
     NSMutableArray *_array;
     HeaderView *_headerView;
-    NSArray *_textArray;
 
     
 }
@@ -39,6 +38,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"dataNotification" object:nil];
     _headerDic = [[NSMutableDictionary alloc] init];
     _array = [[NSMutableArray alloc] init];
     [self _createSubviews];
@@ -46,11 +46,23 @@ static NSString *funcTableCellId = @"funcTableCellId";
     //增加观察者
     [_funcCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
     [_classficationCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)notificationAction:(NSNotification *)notification {
+    NSLog(@"%@",notification.userInfo);
+}
+
+- (void)setAllArray:(NSMutableArray *)allArray {
+    if (_allArray != allArray) {
+        _allArray = allArray;
+    }
 }
 
 #pragma mark - 创建子视图
@@ -88,7 +100,8 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _funcCollectionView.pagingEnabled = YES;
 //    [_funcCollectionView registerClass:[FuncCollectionViewCell class] forCellWithReuseIdentifier:funcCellId];
     [self.view addSubview:_funcCollectionView];
-    _funcCollectionView.allArray = [_textArray mutableCopy];
+    _funcCollectionView.allArray = _allArray;
+    NSLog(@"%li",_allArray.count);
     
 }
 
@@ -114,32 +127,30 @@ static NSString *funcTableCellId = @"funcTableCellId";
     [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_up"] forState:UIControlStateNormal];
     [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_down"] forState:UIControlStateSelected];
     [funcButton addTarget:self action:@selector(funcButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [_classficationView addSubview:funcButton];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kWidth-funcButton.width)/6, _classficationView.height);
+    layout.itemSize = CGSizeMake((kWidth-funcButton.width)/6, _classficationView.height-3);
     layout.minimumInteritemSpacing = 3;
     layout.minimumLineSpacing = 5;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _classficationCollectionView.itemWidth = _classficationView.height;
     _classficationCollectionView = [[ClassificationCollectionView alloc] initWithFrame:CGRectMake(0, 0, kWidth-funcButton.width, _classficationView.height) collectionViewLayout:layout];
+    _classficationCollectionView.itemWidth = (kWidth-funcButton.width)/6;
+    _classficationCollectionView.showsHorizontalScrollIndicator = NO;
     [_classficationView addSubview:_classficationCollectionView];
-    _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
-    _classficationCollectionView.allArray = [_textArray mutableCopy];
+//    _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
+    _classficationCollectionView.allArray = _allArray;
     
 }
 
 
-#pragma mark - 
+#pragma mark - 上下滑动一致
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     NSNumber *number = [change objectForKey:@"new"];
     NSInteger index = [number integerValue];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     //小标题动了
     if ([object isKindOfClass:[ClassificationCollectionView class]] && _funcCollectionView.currentIndex != index) {
-        
         [_funcCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         _funcCollectionView.currentIndex = index;
     } else if ([object isKindOfClass:[FuncCollectionView class]] && _classficationCollectionView.currentIndex!= index){
@@ -148,9 +159,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
     }
     //更新 标题
 }
-
-
-
 
 #pragma mark - funcButtonAction 
 - (void)funcButtonAction:(UIButton *)button {

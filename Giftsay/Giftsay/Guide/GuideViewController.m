@@ -8,10 +8,15 @@
 
 #import "GuideViewController.h"
 #import "ChoiceViewController.h"
+#import "ChannelsModel.h"
+#import "CommonModel.h"
 
 @interface GuideViewController ()<UIScrollViewDelegate>
 {
     UIPageControl *_pageControl;
+    NSMutableArray *_allMutaleArray;
+    ChoiceViewController *_vc;
+
 }
 
 @end
@@ -21,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    _vc = [[ChoiceViewController alloc] initWithNibName:@"ChoiceViewController" bundle:nil];
+    _allMutaleArray = [[NSMutableArray alloc] init];
+    [self _loadCommonData];
     [self _createSubview];
 }
 
@@ -79,12 +86,34 @@
 
 #pragma mark - button响应方法
 - (IBAction)buttonAction:(id)sender {
-    ChoiceViewController *vc = [[ChoiceViewController alloc] initWithNibName:@"ChoiceViewController" bundle:nil];
-    [self presentViewController:vc animated:NO completion:nil];
+
+    [self presentViewController:_vc animated:NO completion:nil];
 }
 
 
-
+- (void)_loadCommonData {
+    [DataService requestUrl:CHANNELURL httpMethod:@"GET" params:nil block:^(id result) {
+        NSArray *commonArray = [[result objectForKey:@"data"] objectForKey:@"channel_groups"];
+        for (NSDictionary *dic in commonArray) {
+            CommonModel *commonModel = [[CommonModel alloc] init];
+            commonModel.groupArray = [[NSMutableArray alloc] init];
+            commonModel.order = [[dic objectForKey:@"order"] integerValue];
+            commonModel.name = [dic objectForKey:@"name"];
+            commonModel.identity = [[dic objectForKey:@"id"] integerValue];
+            NSArray *channelsArray = [dic objectForKey:@"channels"];
+            for (NSDictionary *dataDic in channelsArray) {
+                ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
+                channelsModel.group_id = [[dataDic objectForKey:@"group_id"] integerValue];
+                channelsModel.identity = [[dataDic objectForKey:@"id"] integerValue];
+                channelsModel.icon_name = [dataDic objectForKey:@"name"];
+                channelsModel.icon_url = [dataDic objectForKey:@"icon_url"];
+                channelsModel.items_count = [[dataDic objectForKey:@"items_count"] integerValue];
+                [_allMutaleArray addObject:channelsModel];
+                _vc.allMutaleArray = _allMutaleArray;
+            }
+        }
+    }];
+}
 
 /*
 #pragma mark - Navigation

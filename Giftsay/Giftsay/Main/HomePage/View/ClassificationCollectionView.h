@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ClassificationCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    UIImageView *bgImgView; //
+}
 
 
 @property (nonatomic,strong) NSMutableDictionary *classificationDic;

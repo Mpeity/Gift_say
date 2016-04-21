@@ -39,7 +39,7 @@
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];
     NSNumber *number = [dic objectForKey:@"notFirst"];
     notFirst = [number boolValue];
-    if (!notFirst) {
+    if (notFirst) {
         NSDictionary *dic = @{@"notFirst":@YES};
         [dic writeToFile:filePath atomically:YES];
         GuideViewController *vc = [[GuideViewController alloc] init];

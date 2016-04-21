@@ -3769,8 +3769,6 @@
 				12D970D21C92C51A004DB441 /* SearchViewController.h */,
 				12D970D31C92C51A004DB441 /* SearchViewController.m */,
 				120290281C7ED89A004BBEEF /* HomePage.storyboard */,
-				12EB21081C97A4810058FEB0 /* ClassificationCollectionView.h */,
-				12EB21091C97A4810058FEB0 /* ClassificationCollectionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3987,6 +3985,8 @@
 		12BB625F1CC4D46C00958C63 /* baseView */ = {
 			isa = PBXGroup;
 			children = (
+				12EB21081C97A4810058FEB0 /* ClassificationCollectionView.h */,
+				12EB21091C97A4810058FEB0 /* ClassificationCollectionView.m */,
 				126E2BF81C96B85600F7A808 /* FuncCollectionView.h */,
 				126E2BF91C96B85600F7A808 /* FuncCollectionView.m */,
 				12D970BD1C92B6EA004DB441 /* FuncCollectionViewCell.h */,

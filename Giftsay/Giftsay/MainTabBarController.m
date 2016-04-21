@@ -8,6 +8,7 @@
 
 #import "MainTabBarController.h"
 #import "BaseViewController.h"
+#import "HomePageViewController.h"
 
 @interface MainTabBarController ()
 
@@ -41,13 +42,19 @@
     self.viewControllers = vcArray;
 }
 
+- (void)setAllArray:(NSMutableArray *)allArray {
+    if (_allArray != allArray) {
+        _allArray = allArray;
+    }
+}
+
 #pragma mark - 自定义TabBar
 - (void)_createTabBarView {
     NSArray *imgNames = @[@"ic_tab_home_normal",@"ic_tab_select_normal",@"ic_tab_category_normal",@"ic_tab_profile_normal"];
     NSArray *selectedImgNames = @[@"ic_tab_home_selected",@"ic_tab_select_selected",@"ic_tab_category_selected.png",@"ic_tab_profile_selected"];
     NSArray *titles = @[@"首页",@"热门",@"分类",@"个人"];
     for (int i = 0; i<imgNames.count; i++) {
-        // 可以⾃自定义title、图⽚
+        // 可以自定义title、图⽚
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:imgNames[i]] tag:i];
         //渲染保持原图
         tabBarItem.selectedImage = [[UIImage imageNamed:selectedImgNames[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -58,6 +65,12 @@
     }
 }
 
+//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+//    if (item == 0) {
+//            HomePageViewController *home = self.viewControllers[0];
+//            home.allArray = _allArray;
+//    }
+//}
 
 
 

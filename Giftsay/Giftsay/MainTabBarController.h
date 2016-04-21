@@ -10,4 +10,6 @@
 
 @interface MainTabBarController : UITabBarController
 
+@property (nonatomic,strong) NSMutableArray *allArray;
+
 @end

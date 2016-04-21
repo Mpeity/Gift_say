@@ -8,6 +8,7 @@
 
 #import "FuncCollectionView.h"
 #import "FuncCollectionViewCell.h"
+#import "ChannelsModel.h"
 
 
 static NSString *cellId = @"cellId";
@@ -42,6 +43,9 @@ static NSString *cellId = @"cellId";
         _allArray = allArray;
     }
 }
+
+
+
 
 
 #pragma mark - Delegate

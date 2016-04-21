@@ -62,20 +62,35 @@ static NSString *collectionCellId = @"collectionCellId";
     }
 }
 
+//- (void)_loadData {
+//    // 分类个类的详情 “http://api.liwushuo.com/v1/channels/id/items?channels=104&limit=10&offset=0”
+//    //#define CHANNELDETAILURL @"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=20&offset=%@"
+//    //    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=%@&offset=%@",[NSNumber numberWithInteger:_channelModel.identity],[NSNumber numberWithInteger:_channelModel.items_count],@0];
+//
+//    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=10&offset=%@",[NSNumber numberWithInteger:_channelModel.identity],@0];
+//
+//    //    @property (nonatomic,copy) NSString *title;
+//    //    @property (nonatomic,copy) NSString *url;
+//    //    @property (nonatomic,copy) NSString *share_msg;
+//    //    @property (nonatomic,assign) NSInteger likes_count;
+//
+//    [DataService requestUrl:url httpMethod:@"GET" params:nil block:^(id result) {
+//        NSLog(@"%@",result);
+//        NSArray *postsArray = [[result objectForKey:@"data"] objectForKey:@"items"];
+//        for (NSDictionary *dic in postsArray) {
+//            SpecialDetailModel *specialDetailModel = [[SpecialDetailModel alloc] init];
+//            specialDetailModel.title = [dic objectForKey:@"title"];
+//            specialDetailModel.url = [dic objectForKey:@"url"];
+//            specialDetailModel.share_msg = [dic objectForKey:@"share_msg"];
+//            specialDetailModel.likes_count = [[dic objectForKey:@"likes_count"] integerValue];
+//            specialDetailModel.content_url = [dic objectForKey:@"content_url"];
+//            specialDetailModel.cover_image_url = [dic objectForKey:@"cover_image_url"];
+//            [_specialMutableArray addObject:specialDetailModel];
+//        }
+//        [_specialCollectionView reloadData];
+//    }];
+//}
 
-//#pragma mark - TableViewDelegate
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 5;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 10;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    FuncTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:funcTableCellId];
-//    return cell;
-//}
 
 #pragma mark - CollectionViewDelegate
 

@@ -8,8 +8,16 @@
 
 #import "ChoiceViewController.h"
 #import "MainTabBarController.h"
+#import "ChannelsModel.h"
+#import "CommonModel.h"
+#import "HomePageViewController.h"
 
 @interface ChoiceViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableDictionary *_identityDic; //
+    NSMutableArray *_boyArray;
+    NSMutableArray *_girlArray;
+}
 
 @end
 
@@ -19,12 +27,183 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"me_profilebackground@2x.jpg"]];
+    _identityDic = [[NSMutableDictionary alloc] init];
+    [self _createArray];
     [self _createSubview];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)_createArray {
+    _boyArray = [[NSMutableArray alloc] init];
+    _girlArray = [[NSMutableArray alloc] init];
+    NSMutableArray *boyMiddle = [[NSMutableArray alloc] init];
+    NSMutableArray *boyHigh = [[NSMutableArray alloc] init];
+    NSMutableArray *boyCollege = [[NSMutableArray alloc] init];
+    NSMutableArray *boyNew = [[NSMutableArray alloc] init];
+    NSMutableArray *boyOld = [[NSMutableArray alloc] init];
+    NSMutableArray *girlMiddle = [[NSMutableArray alloc] init];
+    NSMutableArray *girlHigh = [[NSMutableArray alloc] init];
+    NSMutableArray *girlCollege = [[NSMutableArray alloc] init];
+    NSMutableArray *girlNew = [[NSMutableArray alloc] init];
+    NSMutableArray *girlOld = [[NSMutableArray alloc] init];
+    for (int i = 0; i<_allMutaleArray.count; i++) {
+        ChannelsModel *channelsModel = _allMutaleArray[i];
+        if (channelsModel.identity == 26) { // 基友
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 10) { // 女票
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 9) { // 男票
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 24) { // 送宝贝
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+            
+        }
+        if (channelsModel.identity == 6) { // 送爸妈
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 5) { // 送闺蜜
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 126) { // 奇葩搞怪
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 125) { // 创意生活
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 14) { // 小清新
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 127) { // 设计感
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 28) { // 科技范
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        if (channelsModel.identity == 11) { // 萌萌哒
+            [boyMiddle addObject:channelsModel];
+            [boyHigh addObject:channelsModel];
+            [boyCollege addObject:channelsModel];
+            [boyNew addObject:channelsModel];
+            [boyOld addObject:channelsModel];
+            [girlMiddle addObject:channelsModel];
+            [girlHigh addObject:channelsModel];
+            [girlCollege addObject:channelsModel];
+            [girlNew addObject:channelsModel];
+            [girlOld addObject:channelsModel];
+        }
+        [_girlArray addObject:girlMiddle];
+        [_girlArray addObject:girlHigh];
+        [_girlArray addObject:girlCollege];
+        [_girlArray addObject:girlNew];
+        [_girlArray addObject:girlOld];
+        [_boyArray addObject:boyMiddle];
+        [_boyArray addObject:boyHigh];
+        [_boyArray addObject:boyCollege];
+        [_boyArray addObject:boyNew];
+        [_boyArray addObject:boyOld];
+    }
+}
+
+- (void)setAllMutaleArray:(NSMutableArray *)allMutaleArray {
+    if (_allMutaleArray != allMutaleArray) {
+        _allMutaleArray = allMutaleArray;
+    }
 }
 
 - (void)_createSubview {
@@ -53,6 +232,7 @@
     self.boyLabel.textAlignment = NSTextAlignmentCenter;
     
     UIButton *boyBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.boyImgView.width, self.boyImgView.height)];
+    [boyBtn setTitle:@"boy" forState:UIControlStateNormal];
     [self.boyImgView addSubview:boyBtn];
     [boyBtn addTarget:self action:@selector(boyBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -62,18 +242,21 @@
     self.girlLabel.textAlignment = NSTextAlignmentCenter;
     UIButton *girlBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.girlImgView.width, self.girlImgView.height)];
     [self.girlImgView addSubview:girlBtn];
+    [girlBtn setTitle:@"girl" forState:UIControlStateNormal];
     [girlBtn addTarget:self action:@selector(girlBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
-
 
 - (void)boyBtnAction:(UIButton *)button {
     self.genderView.hidden = YES;
     self.identityView.hidden = NO;
+    [_identityDic setObject:button.currentTitle forKey:@"boy"];
 }
 
 - (void)girlBtnAction:(UIButton *)button {
     self.genderView.hidden = YES;
     self.identityView.hidden = NO;
+    [_identityDic setObject:button.currentTitle forKey:@"girl"];
+
 }
 
 - (IBAction)backBtnAction:(id)sender {
@@ -82,11 +265,12 @@
 }
 
 #pragma mark - tableViewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 1;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    NSLog(@"%lu",(unsigned long)_allMutaleArray.count);
     return 5;
 }
 
@@ -128,8 +312,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MainTabBarController *vc = [[MainTabBarController alloc] init];
-    [self presentViewController:vc animated:NO completion:nil];
+    if ([[_identityDic objectForKey:@"boy"] isEqualToString:@"boy"]) {
+        MainTabBarController *vc = [[MainTabBarController alloc] init];
+        vc.allArray = _boyArray[indexPath.row];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:_boyArray[indexPath.row] forKey:@"data"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
+        HomePageViewController *home = vc.viewControllers[0];
+        home.allArray = _boyArray[indexPath.row];
+        [self presentViewController:vc animated:NO completion:nil];
+//        NSLog(@"%@",vc.allArray);
+    }
+    if ([[_identityDic objectForKey:@"girl"] isEqualToString:@"girl"]) {
+        MainTabBarController *vc = [[MainTabBarController alloc] init];
+        vc.allArray = _girlArray[indexPath.row];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:_girlArray[indexPath.row] forKey:@"data"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
+        [self presentViewController:vc animated:NO completion:nil];
+    }
 }
 
 /*
