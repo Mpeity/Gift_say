@@ -7,6 +7,7 @@
 //
 
 #import "ClassificationCollectionView.h"
+#import "ChannelsModel.h"
 
 static NSString *cellID = @"cellID";
 
@@ -48,10 +49,11 @@ static NSString *cellID = @"cellID";
     UICollectionViewCell *cell = [collectionView  dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
-    }    
+    }
+    ChannelsModel *channelsModel = _allArray[indexPath.row];
     UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
     [cell.contentView addSubview:label];
-    label.text = self.allArray[indexPath.row];
+    label.text = channelsModel.icon_name;
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor blackColor];
     return cell;

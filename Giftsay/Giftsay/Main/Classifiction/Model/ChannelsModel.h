@@ -71,12 +71,14 @@
 //    name = 风格
 //}
 
-@interface ChannelsModel : NSObject
+@interface ChannelsModel : NSObject <NSCoding>
 
 @property (nonatomic,assign) NSInteger group_id;
 @property (nonatomic,assign) NSInteger identity;
 @property (nonatomic,copy) NSString *icon_url;
 @property (nonatomic,copy) NSString *icon_name;
 @property (nonatomic,assign) NSInteger items_count;
+
+
 
 @end

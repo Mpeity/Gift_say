@@ -14,6 +14,7 @@
 #import "FuncTableView.h"
 #import "HeaderView.h"
 #import "FuncCollectionView.h"
+#import "ChannelsModel.h"
 
 static NSString *cellId = @"cellId";
 static NSString *funcTableCellId = @"funcTableCellId";
@@ -27,8 +28,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
     FuncTableView *_funcTableView;
     NSMutableArray *_array;
     HeaderView *_headerView;
-
-    
 }
 
 @end
@@ -38,25 +37,31 @@ static NSString *funcTableCellId = @"funcTableCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"dataNotification" object:nil];
     _headerDic = [[NSMutableDictionary alloc] init];
     _array = [[NSMutableArray alloc] init];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"HomeData"]) {
+        NSData* data  = [[NSUserDefaults standardUserDefaults] objectForKey:@"HomeData"];
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        _allArray = [oldSavedArray mutableCopy];
+        for (ChannelsModel *cha in _allArray) {
+            NSLog(@"%@ %li %li",cha.icon_name,cha.items_count,cha.identity);
+        }
+    }
+    ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
+    channelsModel.icon_name = @"精选";
+    [_allArray insertObject:channelsModel atIndex:0];
     [self _createSubviews];
+
 //    [self _loadDada];
     //增加观察者
     [_funcCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
     [_classficationCollectionView addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew context:nil];
-    
 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)notificationAction:(NSNotification *)notification {
-    NSLog(@"%@",notification.userInfo);
 }
 
 - (void)setAllArray:(NSMutableArray *)allArray {
@@ -67,12 +72,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
 
 #pragma mark - 创建子视图
 - (void)_createSubviews {
-    // 自定义nav
-//    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [leftButton setImage:[UIImage imageNamed:@"btn_check_selected"] forState:UIControlStateNormal];
-//    [leftButton addTarget:self action:@selector(leftBarButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    
+    // 自定义nav    
     self.title = @"礼物说";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"btn_check_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonAction:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"abc_ic_search_api_holo_light"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonAction:)];
@@ -95,13 +95,10 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _funcCollectionView = [[FuncCollectionView alloc] initWithFrame:CGRectMake(0, kHeight*0.07+64, kWidth, kHeight-_classficationView.height-64-49) collectionViewLayout:layout];
     _funcCollectionView.backgroundColor = [UIColor clearColor];
     _funcCollectionView.contentOffset = CGPointMake(0, 0);
-//    _funcCollectionView.delegate = self;
-//    _funcCollectionView.dataSource = self;
     _funcCollectionView.pagingEnabled = YES;
-//    [_funcCollectionView registerClass:[FuncCollectionViewCell class] forCellWithReuseIdentifier:funcCellId];
     [self.view addSubview:_funcCollectionView];
+//    NSArray *array = @[@"精选",@"送朋友",@"送爸妈",@"送宝贝"];
     _funcCollectionView.allArray = _allArray;
-    NSLog(@"%li",_allArray.count);
     
 }
 
@@ -123,6 +120,9 @@ static NSString *funcTableCellId = @"funcTableCellId";
 // 创建头部collectionView
 - (void)_createClassificationView {
 //    arrow_grey_down
+//    UIButton *funcButton = [UIButton alloc] ;
+//    funcButton.frame = CGRectMake(_classficationView.width-_classficationView.height, 0, _classficationView.height, _classficationView.height);
+
     UIButton *funcButton = [[UIButton alloc] initWithFrame:CGRectMake(_classficationView.width-_classficationView.height, 0, _classficationView.height, _classficationView.height)];
     [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_up"] forState:UIControlStateNormal];
     [funcButton setImage:[UIImage imageNamed:@"Xarrow_grey_down"] forState:UIControlStateSelected];
@@ -142,7 +142,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _classficationCollectionView.allArray = _allArray;
     
 }
-
 
 #pragma mark - 上下滑动一致
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

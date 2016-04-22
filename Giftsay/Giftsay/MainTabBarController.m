@@ -11,6 +11,9 @@
 #import "HomePageViewController.h"
 
 @interface MainTabBarController ()
+{
+    NSDictionary *_infoDic;
+}
 
 @end
 
@@ -22,11 +25,27 @@
 //    self.tabBar.translucent = NO;
     [self _createSubViewControllers];
     [self _createTabBarView];
+    NSLog(@"%@",_allArray);
+//    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//    [dic setObject:_allArray forKey:@"data"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"dataNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)notificationAction:(NSNotification *)notification {
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationHome" object:self userInfo:notification.userInfo];
+    _infoDic = [[NSDictionary alloc] init];
+    _infoDic = [notification.userInfo mutableCopy];
+    NSArray *dataArray = [notification.userInfo objectForKey:@"data"];
+    if (dataArray != nil && dataArray.count != 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:dataArray] forKey:@"HomeData"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 #pragma mark - 创建五个ViewController
@@ -50,8 +69,8 @@
 
 #pragma mark - 自定义TabBar
 - (void)_createTabBarView {
-    NSArray *imgNames = @[@"ic_tab_home_normal",@"ic_tab_select_normal",@"ic_tab_category_normal",@"ic_tab_profile_normal"];
-    NSArray *selectedImgNames = @[@"ic_tab_home_selected",@"ic_tab_select_selected",@"ic_tab_category_selected.png",@"ic_tab_profile_selected"];
+    NSArray *imgNames = @[@"Xic_tab_home_normal",@"Xic_tab_select_normal",@"Xic_tab_category_normal",@"Xic_tab_profile_normal"];
+    NSArray *selectedImgNames = @[@"Xic_tab_home_selected",@"Xic_tab_select_selected",@"Xic_tab_category_selected.png",@"Xic_tab_profile_selected"];
     NSArray *titles = @[@"首页",@"热门",@"分类",@"个人"];
     for (int i = 0; i<imgNames.count; i++) {
         // 可以自定义title、图⽚
@@ -59,20 +78,11 @@
         //渲染保持原图
         tabBarItem.selectedImage = [[UIImage imageNamed:selectedImgNames[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         //调整image title 位置 如果同时有image和label，那这时候image的上左下是相对于button，右边是相对于label的；title的上右下是相对于button，左边是相对于image的 top left bottom right
-        tabBarItem.imageInsets = UIEdgeInsetsMake(2, 2, 10, 2);
+        tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 3, 0);
         UIViewController *vc = self.viewControllers[i];
         vc.tabBarItem = tabBarItem;
     }
 }
-
-//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-//    if (item == 0) {
-//            HomePageViewController *home = self.viewControllers[0];
-//            home.allArray = _allArray;
-//    }
-//}
-
-
 
 //#pragma mark - CreateTabBar 创建底部的tabBar
 //- (void)_createTabBarView {

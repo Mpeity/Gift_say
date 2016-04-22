@@ -51,13 +51,15 @@ static NSString *cellId = @"cellId";
 #pragma mark - Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"%lu",(unsigned long)self.allArray.count);
     return self.allArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FuncCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.tag = indexPath.row;
+    ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
+    channelsModel = _allArray[indexPath.row];
+    cell.channelsModel = channelsModel;
+    NSLog(@"-----------%@ %li %li",channelsModel.icon_name,channelsModel.items_count,channelsModel.identity);
     if (indexPath.row == 0) {
         cell.funcTableView.hidden = NO;
         cell.headerView.hidden = NO;
@@ -71,11 +73,9 @@ static NSString *cellId = @"cellId";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row != self.currentIndex) {
-        
+    if (indexPath.row != self.currentIndex) {        
         [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
         self.currentIndex = indexPath.row;
-        
     }
 }
 

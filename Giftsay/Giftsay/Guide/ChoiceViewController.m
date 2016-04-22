@@ -315,19 +315,15 @@
     if ([[_identityDic objectForKey:@"boy"] isEqualToString:@"boy"]) {
         MainTabBarController *vc = [[MainTabBarController alloc] init];
         vc.allArray = _boyArray[indexPath.row];
-        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setObject:_boyArray[indexPath.row] forKey:@"data"];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
-        HomePageViewController *home = vc.viewControllers[0];
-        home.allArray = _boyArray[indexPath.row];
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            [dic setObject:_boyArray[indexPath.row] forKey:@"data"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
         [self presentViewController:vc animated:NO completion:nil];
-//        NSLog(@"%@",vc.allArray);
     }
     if ([[_identityDic objectForKey:@"girl"] isEqualToString:@"girl"]) {
         MainTabBarController *vc = [[MainTabBarController alloc] init];
-        vc.allArray = _girlArray[indexPath.row];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        vc.allArray = _girlArray[indexPath.row];
         [dic setObject:_girlArray[indexPath.row] forKey:@"data"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"dataNotification" object:self userInfo:dic];
         [self presentViewController:vc animated:NO completion:nil];
