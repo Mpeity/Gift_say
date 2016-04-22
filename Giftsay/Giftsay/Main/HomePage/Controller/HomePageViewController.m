@@ -44,7 +44,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
         NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         _allArray = [oldSavedArray mutableCopy];
         for (ChannelsModel *cha in _allArray) {
-            NSLog(@"%@ %li %li",cha.icon_name,cha.items_count,cha.identity);
+            NSLog(@"%@ %li %li",cha.icon_name,cha.items_count,cha.group_id);
         }
     }
     ChannelsModel *channelsModel = [[ChannelsModel alloc] init];

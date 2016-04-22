@@ -28,9 +28,9 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.icon_name forKey:@"icon_name"];
     [aCoder encodeObject:self.icon_url forKey:@"icon_url"];
-    [aCoder encodeInteger:self.group_id forKey:@"group_id"];
-    [aCoder encodeInteger:self.identity forKey:@"identity"];
-    [aCoder encodeInteger:self.items_count forKey:@"items_count"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.group_id] forKey:@"group_id"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.identity] forKey:@"identity"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.items_count] forKey:@"items_count"];
 }
 
 
