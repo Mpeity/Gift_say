@@ -57,7 +57,7 @@
 }
 
 - (void)setBaseModel:(BaseModel *)baseModel {
-    if (baseModel != _baseModel) {
+    if (_baseModel != baseModel ) {
         _baseModel = baseModel;
     }
     [self setNeedsLayout];

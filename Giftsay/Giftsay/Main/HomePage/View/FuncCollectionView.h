@@ -10,6 +10,10 @@
 #import "FuncTableView.h"
 
 @interface FuncCollectionView : UICollectionView<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+{
+    NSMutableArray *specialMutableArray;
+
+}
 
 @property (nonatomic,strong) NSMutableDictionary *funcDic; //
 

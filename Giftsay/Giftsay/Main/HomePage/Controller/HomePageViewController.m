@@ -43,9 +43,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
         NSData* data  = [[NSUserDefaults standardUserDefaults] objectForKey:@"HomeData"];
         NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         _allArray = [oldSavedArray mutableCopy];
-        for (ChannelsModel *cha in _allArray) {
-            NSLog(@"%@ %li %li",cha.icon_name,cha.items_count,cha.group_id);
-        }
     }
     ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
     channelsModel.icon_name = @"精选";
@@ -97,9 +94,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _funcCollectionView.contentOffset = CGPointMake(0, 0);
     _funcCollectionView.pagingEnabled = YES;
     [self.view addSubview:_funcCollectionView];
-//    NSArray *array = @[@"精选",@"送朋友",@"送爸妈",@"送宝贝"];
     _funcCollectionView.allArray = _allArray;
-    
 }
 
 
@@ -130,17 +125,15 @@ static NSString *funcTableCellId = @"funcTableCellId";
     [_classficationView addSubview:funcButton];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kWidth-funcButton.width)/6, _classficationView.height-3);
+    layout.itemSize = CGSizeMake((kWidth-funcButton.width)/4, _classficationView.height-3);
     layout.minimumInteritemSpacing = 3;
     layout.minimumLineSpacing = 5;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _classficationCollectionView = [[ClassificationCollectionView alloc] initWithFrame:CGRectMake(0, 0, kWidth-funcButton.width, _classficationView.height) collectionViewLayout:layout];
-    _classficationCollectionView.itemWidth = (kWidth-funcButton.width)/6;
+    _classficationCollectionView.itemWidth = (kWidth-funcButton.width)/4;
     _classficationCollectionView.showsHorizontalScrollIndicator = NO;
     [_classficationView addSubview:_classficationCollectionView];
-//    _textArray = @[@"精选",@"穿搭",@"海淘",@"生日",@"涨姿势",@"送闺蜜",@"饰品",@"美护",@"礼物",@"母婴",@"结婚",@"家居",@"美食",@"送爸妈",@"鞋包",@"纪念日",@"送同事",@"送男票"];
     _classficationCollectionView.allArray = _allArray;
-    
 }
 
 #pragma mark - 上下滑动一致
@@ -155,6 +148,8 @@ static NSString *funcTableCellId = @"funcTableCellId";
     } else if ([object isKindOfClass:[FuncCollectionView class]] && _classficationCollectionView.currentIndex!= index){
         [_classficationCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];        
         _classficationCollectionView.currentIndex = index;
+    } else {
+        
     }
     //更新 标题
 }

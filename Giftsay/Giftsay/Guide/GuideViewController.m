@@ -108,7 +108,7 @@
                 channelsModel.icon_name = [dataDic objectForKey:@"name"];
                 channelsModel.icon_url = [dataDic objectForKey:@"icon_url"];
                 channelsModel.items_count = [[dataDic objectForKey:@"items_count"] integerValue];
-                    NSLog(@"-----------%@ %li %li",channelsModel.icon_name,channelsModel.items_count,channelsModel.identity);
+//                    NSLog(@"-----------%@ %li %li",channelsModel.icon_name,channelsModel.items_count,channelsModel.identity);
                 [_allMutaleArray addObject:channelsModel];
                 _vc.allMutaleArray = _allMutaleArray;
             }

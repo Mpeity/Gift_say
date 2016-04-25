@@ -9,7 +9,7 @@
 #import "FuncCollectionView.h"
 #import "FuncCollectionViewCell.h"
 #import "ChannelsModel.h"
-
+#import "BaseModel.h"
 
 static NSString *cellId = @"cellId";
 @implementation FuncCollectionView
@@ -24,6 +24,7 @@ static NSString *cellId = @"cellId";
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
+        specialMutableArray = [[NSMutableArray alloc] init];
         [self _createSubviews];
     }
     return self;
@@ -44,29 +45,26 @@ static NSString *cellId = @"cellId";
     }
 }
 
-
-
-
-
 #pragma mark - Delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.allArray.count;
+    return _allArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FuncCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
-    channelsModel = _allArray[indexPath.row];
-    cell.channelsModel = channelsModel;
-    NSLog(@"-----------%@ %li %li",channelsModel.icon_name,channelsModel.items_count,channelsModel.identity);
+    cell.tag = indexPath.row;
     if (indexPath.row == 0) {
         cell.funcTableView.hidden = NO;
-        cell.headerView.hidden = NO;
         cell.collectionView.hidden = YES;
+        [cell.collectionView removeFromSuperview];
     } else {
+        ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
+        channelsModel = _allArray[indexPath.row];
+        cell.channelsModel = channelsModel;
+//        NSLog(@"-----------%@ %li %li",cell.channelsModel.icon_name,cell.channelsModel.items_count,channelsModel.identity);
         cell.funcTableView.hidden = YES;
-        cell.headerView.hidden = YES;
+        [cell.contentView addSubview:cell.collectionView];
         cell.collectionView.hidden = NO;
     }
     return cell;
@@ -78,6 +76,8 @@ static NSString *cellId = @"cellId";
         self.currentIndex = indexPath.row;
     }
 }
+
+
 
 
 @end

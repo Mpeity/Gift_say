@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"me_profilebackground@2x.jpg"]];
+    self.view.backgroundColor = [UIColor lavender];
     _identityDic = [[NSMutableDictionary alloc] init];
     [self _createArray];
     [self _createSubview];
@@ -232,7 +232,6 @@
     self.boyLabel.textAlignment = NSTextAlignmentCenter;
     
     UIButton *boyBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.boyImgView.width, self.boyImgView.height)];
-    [boyBtn setTitle:@"boy" forState:UIControlStateNormal];
     [self.boyImgView addSubview:boyBtn];
     [boyBtn addTarget:self action:@selector(boyBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -242,20 +241,19 @@
     self.girlLabel.textAlignment = NSTextAlignmentCenter;
     UIButton *girlBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.girlImgView.width, self.girlImgView.height)];
     [self.girlImgView addSubview:girlBtn];
-    [girlBtn setTitle:@"girl" forState:UIControlStateNormal];
     [girlBtn addTarget:self action:@selector(girlBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)boyBtnAction:(UIButton *)button {
     self.genderView.hidden = YES;
     self.identityView.hidden = NO;
-    [_identityDic setObject:button.currentTitle forKey:@"boy"];
+    [_identityDic setObject:@"boy" forKey:@"boy"];
 }
 
 - (void)girlBtnAction:(UIButton *)button {
     self.genderView.hidden = YES;
     self.identityView.hidden = NO;
-    [_identityDic setObject:button.currentTitle forKey:@"girl"];
+    [_identityDic setObject:@"girl" forKey:@"girl"];
 
 }
 

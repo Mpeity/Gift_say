@@ -11,12 +11,11 @@
 #import "BaseCollectionViewCell.h"
 #import "HeaderModel.h"
 #import "SpecialDetailModel.h"
+
 static NSString *funcTableCellId = @"funcTableCellId";
-static NSString *collectionCellId = @"collectionCellId";
 
 @implementation FuncCollectionViewCell
 {
-    NSMutableArray *_array;
     NSMutableArray *_specialMutableArray;
 }
 
@@ -28,72 +27,60 @@ static NSString *collectionCellId = @"collectionCellId";
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _array = [[NSMutableArray alloc] init];
         _specialMutableArray = [[NSMutableArray alloc] init];
-        [self _loadData];
-        [self _createSubviews];
     }
     return self;
 }
-
-//- (void)_loadDada {
-//    [DataService requestUrl:BANNERURL httpMethod:@"GET" params:nil block:^(id result) {
-// 
-//    }];
-//}
-
 
 - (void)setChannelsModel:(ChannelsModel *)channelsModel {
     if (_channelsModel != channelsModel) {
         _channelsModel = channelsModel;
     }
+    [self setNeedsLayout];
 }
 
-- (void)_createSubviews {
+- (void)layoutSubviews {
     // 创建tableview视图
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    [super layoutSubviews];
     _funcTableView = [[FuncTableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight-kHeight*0.07-64-49) style:UITableViewStylePlain];
     [self.contentView addSubview:_funcTableView];
-    
+    _funcTableView.backgroundColor = [UIColor whiteSmoke];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(kWidth, kHeight);
+    layout.itemSize = CGSizeMake(kWidth-20 ,(kWidth-20)*13/28);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight) collectionViewLayout:layout];
-    [_collectionView registerClass:[BaseCollectionViewCell class] forCellWithReuseIdentifier:collectionCellId];
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    [self addSubview:_collectionView];
-    _collectionView.backgroundColor = [UIColor greenColor];
+    _collectionView = [[BaseCollectionView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight-(kWidth-20)*13/28) collectionViewLayout:layout];
+    [self.contentView addSubview:_collectionView];
+    _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.hidden = YES;
-    if (self.tag == 0) {        
+    if (self.tag == 0) {
+        _funcTableView.hidden = NO;
         _collectionView.hidden = YES;
+        [_collectionView removeFromSuperview];
     } else {
+        [self.contentView addSubview:_collectionView];
         _collectionView.hidden = NO;
+        _funcTableView.hidden = YES;
+        [self _loadData];
     }
 }
+
 
 - (void)_loadData {
     // 分类个类的详情 “http://api.liwushuo.com/v1/channels/id/items?channels=104&limit=10&offset=0”
     //#define CHANNELDETAILURL @"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=20&offset=%@"
     //    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=%@&offset=%@",[NSNumber numberWithInteger:_channelModel.identity],[NSNumber numberWithInteger:_channelModel.items_count],@0];
-
-    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=10&offset=%@",[NSNumber numberWithInteger:_channelsModel.identity],@0];
-
-    //    @property (nonatomic,copy) NSString *title;
-    //    @property (nonatomic,copy) NSString *url;
-    //    @property (nonatomic,copy) NSString *share_msg;
-    //    @property (nonatomic,assign) NSInteger likes_count;
-
+    
+    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=10&offset=%@",[NSNumber numberWithInteger:self.channelsModel.identity],@0];
+    NSLog(@"%@",self.channelsModel);
     [DataService requestUrl:url httpMethod:@"GET" params:nil block:^(id result) {
-//        NSLog(@"%@",result);
+        NSLog(@"%@",result);
         NSArray *postsArray = [[result objectForKey:@"data"] objectForKey:@"items"];
         for (NSDictionary *dic in postsArray) {
-//            SpecialDetailModel *specialDetailModel = [[SpecialDetailModel alloc] init];
-//            specialDetailModel.title = [dic objectForKey:@"title"];
-//            specialDetailModel.url = [dic objectForKey:@"url"];
-//            specialDetailModel.share_msg = [dic objectForKey:@"share_msg"];
-//            specialDetailModel.likes_count = [[dic objectForKey:@"likes_count"] integerValue];
-//            specialDetailModel.content_url = [dic objectForKey:@"content_url"];
-//            specialDetailModel.cover_image_url = [dic objectForKey:@"cover_image_url"];
             BaseModel *specialDetailModel = [[BaseModel alloc] init];
             specialDetailModel.title = [dic objectForKey:@"title"];
             specialDetailModel.url = [dic objectForKey:@"url"];
@@ -102,25 +89,12 @@ static NSString *collectionCellId = @"collectionCellId";
             specialDetailModel.content_url = [dic objectForKey:@"content_url"];
             specialDetailModel.cover_image_url = [dic objectForKey:@"cover_image_url"];
             [_specialMutableArray addObject:specialDetailModel];
+            _collectionView.allArray = _specialMutableArray;
         }
         [_collectionView reloadData];
-    }];
+    }];    
 }
 
-
-#pragma mark - CollectionViewDelegate
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    NSLog(@"%li",self.channelsModel.items_count);
-    return self.channelsModel.items_count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionCellId forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor realgarColor];
-    cell.baseModel = _specialMutableArray[indexPath.row];
-    return cell;
-}
 
 
 

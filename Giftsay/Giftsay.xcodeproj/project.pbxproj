@@ -1082,6 +1082,7 @@
 		126E70BC1C3A3C7E0062C8F6 /* GiftsayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70BB1C3A3C7E0062C8F6 /* GiftsayTests.m */; };
 		126E70C71C3A3C7E0062C8F6 /* GiftsayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70C61C3A3C7E0062C8F6 /* GiftsayUITests.m */; };
 		126FC5171C995A5A003786FB /* TaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5161C995A5A003786FB /* TaoBaoViewController.m */; };
+		126FDF431CCE107D003C3E2B /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126FDF421CCE107D003C3E2B /* BaseWebViewController.m */; };
 		1275F3A41CA28AAA00EEB97F /* SpecialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1275F3A31CA28AAA00EEB97F /* SpecialViewController.m */; };
 		1275F3A81CA28ACF00EEB97F /* SpecialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1275F3A61CA28ACF00EEB97F /* SpecialCollectionViewCell.m */; };
 		1275F3A91CA28ACF00EEB97F /* SpecialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1275F3A71CA28ACF00EEB97F /* SpecialCollectionViewCell.xib */; };
@@ -1108,6 +1109,7 @@
 		12C675401C85224F0006EB6A /* SXMarquee.m in Sources */ = {isa = PBXBuildFile; fileRef = 12C675391C85224F0006EB6A /* SXMarquee.m */; };
 		12C675411C85224F0006EB6A /* UIColor+Separate.m in Sources */ = {isa = PBXBuildFile; fileRef = 12C6753B1C85224F0006EB6A /* UIColor+Separate.m */; };
 		12C675421C85224F0006EB6A /* UIColor+Wonderful.m in Sources */ = {isa = PBXBuildFile; fileRef = 12C6753D1C85224F0006EB6A /* UIColor+Wonderful.m */; };
+		12C89EE51CCDE8FE0016E3A5 /* BaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12C89EE41CCDE8FE0016E3A5 /* BaseCollectionView.m */; };
 		12CE3EB51C7FE4A100E173DF /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CE3EB41C7FE4A100E173DF /* UIViewExt.m */; };
 		12CE3EB91C7FEA9400E173DF /* ChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CE3EB71C7FEA9400E173DF /* ChoiceViewController.m */; };
 		12CE3EBA1C7FEA9400E173DF /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12CE3EB81C7FEA9400E173DF /* ChoiceViewController.xib */; };
@@ -2306,6 +2308,8 @@
 		126E70C81C3A3C7E0062C8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		126FC5151C995A5A003786FB /* TaoBaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoViewController.h; sourceTree = "<group>"; };
 		126FC5161C995A5A003786FB /* TaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoViewController.m; sourceTree = "<group>"; };
+		126FDF411CCE107D003C3E2B /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
+		126FDF421CCE107D003C3E2B /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
 		1275F3A21CA28AAA00EEB97F /* SpecialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialViewController.h; sourceTree = "<group>"; };
 		1275F3A31CA28AAA00EEB97F /* SpecialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialViewController.m; sourceTree = "<group>"; };
 		1275F3A51CA28ACF00EEB97F /* SpecialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2352,6 +2356,8 @@
 		12C6753B1C85224F0006EB6A /* UIColor+Separate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Separate.m"; sourceTree = "<group>"; };
 		12C6753C1C85224F0006EB6A /* UIColor+Wonderful.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Wonderful.h"; sourceTree = "<group>"; };
 		12C6753D1C85224F0006EB6A /* UIColor+Wonderful.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Wonderful.m"; sourceTree = "<group>"; };
+		12C89EE31CCDE8FE0016E3A5 /* BaseCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCollectionView.h; sourceTree = "<group>"; };
+		12C89EE41CCDE8FE0016E3A5 /* BaseCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionView.m; sourceTree = "<group>"; };
 		12CE3EB31C7FE4A100E173DF /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		12CE3EB41C7FE4A100E173DF /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		12CE3EB61C7FEA9400E173DF /* ChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceViewController.h; sourceTree = "<group>"; };
@@ -3760,9 +3766,13 @@
 			isa = PBXGroup;
 			children = (
 				12BB625F1CC4D46C00958C63 /* baseView */,
+				12C89EE31CCDE8FE0016E3A5 /* BaseCollectionView.h */,
+				12C89EE41CCDE8FE0016E3A5 /* BaseCollectionView.m */,
 				12BB62541CC4B89400958C63 /* BaseCollectionViewCell.h */,
 				12BB62551CC4B89400958C63 /* BaseCollectionViewCell.m */,
 				12BB62561CC4B89400958C63 /* BaseCollectionViewCell.xib */,
+				126FDF411CCE107D003C3E2B /* BaseWebViewController.h */,
+				126FDF421CCE107D003C3E2B /* BaseWebViewController.m */,
 				12D970CD1C92C499004DB441 /* LogInViewController.h */,
 				12D970CE1C92C499004DB441 /* LogInViewController.m */,
 				12D970CF1C92C499004DB441 /* LogInViewController.xib */,
@@ -5386,6 +5396,7 @@
 				1202903E1C7ED89A004BBEEF /* IndividualViewController.m in Sources */,
 				12C675401C85224F0006EB6A /* SXMarquee.m in Sources */,
 				1253A88B1CA5559100D4DDE0 /* LoginViewController.m in Sources */,
+				12C89EE51CCDE8FE0016E3A5 /* BaseCollectionView.m in Sources */,
 				12C6753E1C85224F0006EB6A /* SXColorGradientView.m in Sources */,
 				129840B91CC65ABD008E0510 /* ItemsModel.m in Sources */,
 				123E3B851CA520F000E1DC76 /* IconViewController.m in Sources */,
@@ -5402,6 +5413,7 @@
 				12AF016D1CAA73DD00E94C2B /* SetupViewController.m in Sources */,
 				12C0C8FB1CC5CC9500465216 /* HeaderModel.m in Sources */,
 				123E6A1F1C9BE9740020A673 /* SpecialModel.m in Sources */,
+				126FDF431CCE107D003C3E2B /* BaseWebViewController.m in Sources */,
 				1275F3A41CA28AAA00EEB97F /* SpecialViewController.m in Sources */,
 				12D970C81C92B77A004DB441 /* FuncTableViewCell.m in Sources */,
 				12D204521CC6382100D0701A /* CodeScanController.m in Sources */,

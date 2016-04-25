@@ -57,7 +57,7 @@ static NSString *tableCellId = @"tableCellId";
 //    @property (nonatomic,copy) NSString *cover_webp_url;
 //    @property (nonatomic,copy) NSString *cover_image_url;
     [DataService requestUrl:ITEMSURL httpMethod:@"GET" params:nil block:^(id result) {
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
         NSArray *itemArray = [[result objectForKey:@"data"] objectForKey:@"items"];
         for (NSDictionary *dic in itemArray) {
             ItemsModel *itemsModel = [[ItemsModel alloc] init];
