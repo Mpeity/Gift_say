@@ -27,7 +27,6 @@ static NSString *funcTableCellId = @"funcTableCellId";
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _specialMutableArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -41,9 +40,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
 
 - (void)layoutSubviews {
     // 创建tableview视图
-    for (UIView *view in self.subviews) {
-        [view removeFromSuperview];
-    }
+
     [super layoutSubviews];
     _funcTableView = [[FuncTableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight-kHeight*0.07-64-49) style:UITableViewStylePlain];
     [self.contentView addSubview:_funcTableView];
@@ -74,11 +71,9 @@ static NSString *funcTableCellId = @"funcTableCellId";
     // 分类个类的详情 “http://api.liwushuo.com/v1/channels/id/items?channels=104&limit=10&offset=0”
     //#define CHANNELDETAILURL @"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=20&offset=%@"
     //    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=%@&offset=%@",[NSNumber numberWithInteger:_channelModel.identity],[NSNumber numberWithInteger:_channelModel.items_count],@0];
-    
-    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=10&offset=%@",[NSNumber numberWithInteger:self.channelsModel.identity],@0];
-    NSLog(@"%@",self.channelsModel);
+    _specialMutableArray = [[NSMutableArray alloc] init];
+    NSString *url = [NSString stringWithFormat:@"http://api.liwushuo.com/v1/channels/%@/items?channels=104&limit=50&offset=%@",[NSNumber numberWithInteger:self.channelsModel.identity],@0];
     [DataService requestUrl:url httpMethod:@"GET" params:nil block:^(id result) {
-        NSLog(@"%@",result);
         NSArray *postsArray = [[result objectForKey:@"data"] objectForKey:@"items"];
         for (NSDictionary *dic in postsArray) {
             BaseModel *specialDetailModel = [[BaseModel alloc] init];

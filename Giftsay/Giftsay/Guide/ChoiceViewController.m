@@ -37,6 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// 各个模块初始化数据
 - (void)_createArray {
     _boyArray = [[NSMutableArray alloc] init];
     _girlArray = [[NSMutableArray alloc] init];
@@ -50,154 +51,26 @@
     NSMutableArray *girlCollege = [[NSMutableArray alloc] init];
     NSMutableArray *girlNew = [[NSMutableArray alloc] init];
     NSMutableArray *girlOld = [[NSMutableArray alloc] init];
-    for (int i = 0; i<_allMutaleArray.count; i++) {
-        ChannelsModel *channelsModel = _allMutaleArray[i];
-        if (channelsModel.identity == 26) { // 基友
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 10) { // 女票
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 9) { // 男票
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 24) { // 送宝贝
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-            
-        }
-        if (channelsModel.identity == 6) { // 送爸妈
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 5) { // 送闺蜜
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 126) { // 奇葩搞怪
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 125) { // 创意生活
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 14) { // 小清新
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 127) { // 设计感
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 28) { // 科技范
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        if (channelsModel.identity == 11) { // 萌萌哒
-            [boyMiddle addObject:channelsModel];
-            [boyHigh addObject:channelsModel];
-            [boyCollege addObject:channelsModel];
-            [boyNew addObject:channelsModel];
-            [boyOld addObject:channelsModel];
-            [girlMiddle addObject:channelsModel];
-            [girlHigh addObject:channelsModel];
-            [girlCollege addObject:channelsModel];
-            [girlNew addObject:channelsModel];
-            [girlOld addObject:channelsModel];
-        }
-        [_girlArray addObject:girlMiddle];
-        [_girlArray addObject:girlHigh];
-        [_girlArray addObject:girlCollege];
-        [_girlArray addObject:girlNew];
-        [_girlArray addObject:girlOld];
-        [_boyArray addObject:boyMiddle];
-        [_boyArray addObject:boyHigh];
-        [_boyArray addObject:boyCollege];
-        [_boyArray addObject:boyNew];
-        [_boyArray addObject:boyOld];
-    }
+    girlMiddle = [@[_allMutaleArray[5],_allMutaleArray[1],_allMutaleArray[4],_allMutaleArray[3],_allMutaleArray[2],_allMutaleArray[25],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[14],_allMutaleArray[11],_allMutaleArray[15],_allMutaleArray[13]]  mutableCopy];
+    girlHigh = [@[_allMutaleArray[5],_allMutaleArray[1],_allMutaleArray[4],_allMutaleArray[3],_allMutaleArray[2],_allMutaleArray[25],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[15],_allMutaleArray[14],_allMutaleArray[13],_allMutaleArray[11]] mutableCopy];
+    girlCollege = [@[_allMutaleArray[1],_allMutaleArray[5],_allMutaleArray[3],_allMutaleArray[9],_allMutaleArray[4],_allMutaleArray[6],_allMutaleArray[2],_allMutaleArray[10],_allMutaleArray[25],_allMutaleArray[15],_allMutaleArray[12],_allMutaleArray[13],_allMutaleArray[14],_allMutaleArray[11]] mutableCopy];
+    girlNew = [@[_allMutaleArray[1],_allMutaleArray[5],_allMutaleArray[3],_allMutaleArray[9],_allMutaleArray[6],_allMutaleArray[4],_allMutaleArray[2],_allMutaleArray[25],_allMutaleArray[15],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[13],_allMutaleArray[11],_allMutaleArray[14]] mutableCopy];
+    girlOld = [@[_allMutaleArray[1],_allMutaleArray[5],_allMutaleArray[3],_allMutaleArray[4],_allMutaleArray[6],_allMutaleArray[2],_allMutaleArray[15],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[13],_allMutaleArray[14],_allMutaleArray[11]] mutableCopy];
+    boyMiddle = [@[_allMutaleArray[4],_allMutaleArray[0],_allMutaleArray[5],_allMutaleArray[3],_allMutaleArray[2],_allMutaleArray[14],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[11],_allMutaleArray[15],_allMutaleArray[13]] mutableCopy];
+    boyHigh = [@[_allMutaleArray[4],_allMutaleArray[5],_allMutaleArray[0],_allMutaleArray[3],_allMutaleArray[2],_allMutaleArray[10],_allMutaleArray[14],_allMutaleArray[12],_allMutaleArray[13],_allMutaleArray[11],_allMutaleArray[15]] mutableCopy];
+    boyCollege = [@[_allMutaleArray[0],_allMutaleArray[4],_allMutaleArray[3],_allMutaleArray[6],_allMutaleArray[2],_allMutaleArray[10],_allMutaleArray[15],_allMutaleArray[12],_allMutaleArray[14],_allMutaleArray[13],_allMutaleArray[11]] mutableCopy];
+    boyNew = [@[_allMutaleArray[0],_allMutaleArray[3],_allMutaleArray[4],_allMutaleArray[5],_allMutaleArray[6],_allMutaleArray[2],_allMutaleArray[15],_allMutaleArray[13],_allMutaleArray[10],_allMutaleArray[12],_allMutaleArray[14],_allMutaleArray[11]] mutableCopy];
+    boyOld = [@[_allMutaleArray[0],_allMutaleArray[4],_allMutaleArray[3],_allMutaleArray[6],_allMutaleArray[2],_allMutaleArray[15],_allMutaleArray[10],_allMutaleArray[13],_allMutaleArray[12],_allMutaleArray[14],_allMutaleArray[11]] mutableCopy];
+    [_girlArray addObject:girlMiddle];
+    [_girlArray addObject:girlHigh];
+    [_girlArray addObject:girlCollege];
+    [_girlArray addObject:girlNew];
+    [_girlArray addObject:girlOld];
+    [_boyArray addObject:boyMiddle];
+    [_boyArray addObject:boyHigh];
+    [_boyArray addObject:boyCollege];
+    [_boyArray addObject:boyNew];
+    [_boyArray addObject:boyOld];
 }
 
 - (void)setAllMutaleArray:(NSMutableArray *)allMutaleArray {
@@ -263,13 +136,9 @@
 }
 
 #pragma mark - tableViewDelegate
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    NSLog(@"%lu",(unsigned long)_allMutaleArray.count);
-    return 5;
+     return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

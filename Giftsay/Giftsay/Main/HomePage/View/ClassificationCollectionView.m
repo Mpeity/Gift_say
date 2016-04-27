@@ -20,7 +20,7 @@ static NSString *cellID = @"cellID";
         self.backgroundColor = [UIColor  oldLace];
         self.delegate = self;
         self.dataSource = self;
-        bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.height-3, 50, 2)];
+        bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.height-3, (kWidth-kHeight*0.07)/4, 2)];
         bgImgView.image = [UIImage imageNamed:@"bg_datepicker.9"];
         [self addSubview:bgImgView];
     }
@@ -80,7 +80,8 @@ static NSString *cellID = @"cellID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
-    CGFloat x = (((kWidth-kHeight*0.07)/4)*(indexPath.row+1))/2+(kWidth-kHeight*0.07)/8;
+    CGFloat x = ((kWidth-kHeight*0.07)/4+5)*(indexPath.row)+((kWidth-kHeight*0.07)/4+5)/2;
+
     bgImgView.center = CGPointMake(x, self.height-3);
     [UIView commitAnimations];
     if (indexPath.row != self.currentIndex) {

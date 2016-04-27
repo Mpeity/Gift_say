@@ -48,14 +48,6 @@ static NSString *tableCellId = @"tableCellId";
 
 // 获取数据 并解析
 - (void)_loadDada {
-//    @property (nonatomic,assign) NSInteger editor_id;
-//    @property (nonatomic,copy) NSString *title;
-//    @property (nonatomic,copy) NSString *url;
-//    @property (nonatomic,copy) NSString *content_url;
-//    @property (nonatomic,copy) NSString *share_msg;
-//    @property (nonatomic,assign) NSInteger likes_count;
-//    @property (nonatomic,copy) NSString *cover_webp_url;
-//    @property (nonatomic,copy) NSString *cover_image_url;
     [DataService requestUrl:ITEMSURL httpMethod:@"GET" params:nil block:^(id result) {
 //        NSLog(@"%@",result);
         NSArray *itemArray = [[result objectForKey:@"data"] objectForKey:@"items"];

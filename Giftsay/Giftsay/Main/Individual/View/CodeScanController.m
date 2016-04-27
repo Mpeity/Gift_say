@@ -109,7 +109,7 @@
     //扫描动画
     if (timer == nil)
     {
-        timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scanAnimation) userInfo:nil repeats:YES];
+        timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(scanAnimation) userInfo:nil repeats:YES];
     }
 }
 

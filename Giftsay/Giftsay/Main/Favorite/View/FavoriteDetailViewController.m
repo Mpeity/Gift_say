@@ -36,11 +36,11 @@
     // 02 创建网络请求
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
-//    [self.view addSubview:webView];
+    [self.view addSubview:webView];
     
     UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 300)];
     coverView.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.8];
-    [self.view addSubview:coverView];
+//    [self.view addSubview:coverView];
     
     // 底部tab的创建
     UIView *tabView = [[UIView alloc] initWithFrame:CGRectMake(0, kHeight-49, kWidth, 49)];

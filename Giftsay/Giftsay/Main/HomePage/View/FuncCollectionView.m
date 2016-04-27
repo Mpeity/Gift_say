@@ -62,7 +62,6 @@ static NSString *cellId = @"cellId";
         ChannelsModel *channelsModel = [[ChannelsModel alloc] init];
         channelsModel = _allArray[indexPath.row];
         cell.channelsModel = channelsModel;
-//        NSLog(@"-----------%@ %li %li",cell.channelsModel.icon_name,cell.channelsModel.items_count,channelsModel.identity);
         cell.funcTableView.hidden = YES;
         [cell.contentView addSubview:cell.collectionView];
         cell.collectionView.hidden = NO;

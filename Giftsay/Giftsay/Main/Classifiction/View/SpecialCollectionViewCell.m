@@ -51,8 +51,11 @@
 - (void)clickBtnAction:(UIButton *)button {
     button.selected = !button.selected;
     if (button.selected) {
-        button.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
+        button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
+    } else {
         button.imageEdgeInsets = UIEdgeInsetsMake(3, 17, 10, 17);
+        button.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
     }
 }
 
