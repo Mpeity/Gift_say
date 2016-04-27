@@ -7,6 +7,7 @@
 //
 
 #import "FuncTableViewCell.h"
+#import "CollectFmbd.h"
 
 @implementation FuncTableViewCell
 
@@ -30,14 +31,17 @@
     [self.bgImgView sd_setImageWithURL:[NSURL URLWithString:self.itemsModel.cover_image_url]];
     self.titleLabel.text = self.itemsModel.title;
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.clickBtn.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
-    self.clickBtn.imageEdgeInsets = UIEdgeInsetsMake(3, 17, 10, 17);
+//    self.clickBtn.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
+//    self.clickBtn.imageEdgeInsets = UIEdgeInsetsMake(3, 17, 10, 17);
+    self.clickBtn.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
+    self.clickBtn.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
     [self.clickBtn setTitle:[NSString stringWithFormat:@"%ld",(long)self.itemsModel.likes_count] forState:UIControlStateNormal];
     [self.clickBtn setTitle:[NSString stringWithFormat:@"%ld",(long)self.itemsModel.likes_count+1] forState:UIControlStateSelected];
     self.clickBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     self.clickBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.clickBtn setImage:[UIImage imageNamed:@"Sic_action_compact_favourite_normal"] forState:UIControlStateNormal];
-    [self.clickBtn setImage:[UIImage imageNamed:@"Sic_action_favourite_selected"] forState:UIControlStateSelected];
+//    icon_favorite_batch_grey    icon_favorite_batch_red  Sic_action_compact_favourite_normal Sic_action_favourite_selected
+    [self.clickBtn setImage:[UIImage imageNamed:@"icon_favorite_batch_grey"] forState:UIControlStateNormal];
+    [self.clickBtn setImage:[UIImage imageNamed:@"icon_favorite_batch_red"] forState:UIControlStateSelected];
     
     //    titleEdgeInsets是titleLabel相对于其上下左右的inset，跟tableView的contentInset是类似的；
     //    如果只有title，那titleLabel的 上下左右 都是 相对于Button 的；
@@ -56,10 +60,16 @@
     button.selected = !button.selected;
     if (button.selected) {
         button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
-        button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
+        button.titleEdgeInsets = UIEdgeInsetsMake(37,-35, 0, 0);
+//        button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
+//        button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
+        [[CollectFmbd sharedManager] addIndex:self.itemsModel.identity  WithTitle:self.itemsModel.title WithCoverImgUrl:self.itemsModel.cover_image_url];
     } else {
-        button.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(3, 17, 10, 17);
+        button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
+        button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
+//        button.titleEdgeInsets = UIEdgeInsetsMake(37, -17, 5, 0);
+//        button.imageEdgeInsets = UIEdgeInsetsMake(3, 17, 10, 17);
+        [[CollectFmbd sharedManager] deleteDataWithIndex:self.itemsModel.identity];
     }
 }
 

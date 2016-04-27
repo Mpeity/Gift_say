@@ -78,11 +78,10 @@ static NSString *funcTableCellId = @"funcTableCellId";
     
     // 头部分类view
     _classficationView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight*0.07)];
-    _classficationView.backgroundColor = [UIColor purpleColor];
+    _classficationView.backgroundColor = [UIColor whiteColor];
     [self _createClassificationView];
     [self.view addSubview:_classficationView];
     [self _createClassificationView];
-    _classficationView.backgroundColor = [UIColor purpleColor];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(kWidth, kHeight-_classficationView.height-64-49);
@@ -90,7 +89,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
     layout.minimumLineSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _funcCollectionView = [[FuncCollectionView alloc] initWithFrame:CGRectMake(0, kHeight*0.07+64, kWidth, kHeight-_classficationView.height-64-49) collectionViewLayout:layout];
-    _funcCollectionView.backgroundColor = [UIColor clearColor];
+    _funcCollectionView.backgroundColor = [UIColor whiteColor];
     _funcCollectionView.contentOffset = CGPointMake(0, 0);
     _funcCollectionView.pagingEnabled = YES;
     _funcCollectionView.itemWidth = kWidth;
@@ -156,7 +155,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
         [UIView commitAnimations];
 
     } else {
-        
+        return;
     }
     //更新 标题
 }

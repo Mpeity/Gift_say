@@ -12,7 +12,7 @@
 #import "ChannelsModel.h"
 #import "BaseCollectionView.h"
 
-@interface FuncCollectionViewCell : UICollectionViewCell<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface FuncCollectionViewCell : UICollectionViewCell<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,strong) FuncTableView *funcTableView; // tableView
 @property (nonatomic,strong) HeaderView *headerView; // tableView上的headerView

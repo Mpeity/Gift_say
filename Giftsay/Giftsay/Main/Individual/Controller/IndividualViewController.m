@@ -10,15 +10,24 @@
 #import "LogInViewController.h"
 #import "SetupViewController.h"
 #import "CodeScanController.h"
+#import "CollectFmbd.h"
+#import "ItemsModel.h"
 
-@interface IndividualViewController ()
+static NSString *giftCell = @"giftCell";
+
+@interface IndividualViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIImageView *_bgImgView; //头部背景
     UIView *_funcView; // 功能框视图
     UIButton *_giftBtn; // 礼物按钮
     UIButton *_strategyBtn; // 攻略按钮
-    UIButton *_logInBtn; //
+    UIButton *_logInBtn; // 登录按钮
+    UITableView *_giftTableView; //
+    UITableView *_strategTableyView; //
+    UIImageView *_scrollImgView; // 滑动条
 }
+
+@property (nonatomic,strong) NSMutableArray *countArray;
 
 @end
 
@@ -27,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+//    [self performSelector:@selector(_loadData) withObject:nil afterDelay:3];
     [self _createSubviews];
 }
 
@@ -112,17 +121,21 @@
     _funcView = [[UIView alloc] initWithFrame:CGRectMake(0, _bgImgView.height, kWidth, kHeight*0.1)];
     _funcView.backgroundColor = [UIColor lavender];
     [self.view addSubview:_funcView];
-//    for (int i = 0; i<4; i++) {
-//        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((kWidth-200)/8+i*50, 0, 50, _funcView.height)];
-//        [_funcView addSubview:button];
-//        button.tag = i;
-//        if (button.tag % 2) {
-//            button.backgroundColor = [UIColor redColor];
-//        } else {
-//            button.backgroundColor = [UIColor greenColor];
-//        }
-//    }
-//    
+    NSArray *titleArray = @[@"购物车",@"订单",@"礼券",@"客服"];
+    // Xicon_cart  Xicon_coupon  Xicon_order Xicon_service
+    NSArray *imgNameArray = @[@"Xicon_cart",@"Xicon_order",@"Xicon_coupon",@"Xicon_service"];
+    for (int i = 0; i<4; i++) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20+i*90, 0, 70, _funcView.height)];
+        [_funcView addSubview:button];
+        [button setTitle:titleArray[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setFont:[UIFont systemFontOfSize:14]];
+        [button setImage:[UIImage imageNamed:imgNameArray[i]] forState:UIControlStateNormal];
+        button.tag = i;
+        button.titleEdgeInsets = UIEdgeInsetsMake(43, -50, 3, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 26.7, 20);
+    }
+    
     
     
     
@@ -145,7 +158,60 @@
     [_strategyBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     [_strategyBtn addTarget:self action:@selector(strategyBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_strategyBtn];
+    
+    // 滑动条
+    _scrollImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_giftBtn.frame)-2, kWidth/2, 2)];
+    _scrollImgView.image = [UIImage imageNamed:@"bg_datepicker.9"];
+    [self.view addSubview:_scrollImgView];
+    
+    // 礼物收藏视图
+    _giftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_giftBtn.frame), kWidth, kHeight*0.4) style:UITableViewStylePlain];
+    [_giftTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:giftCell];
+    _giftTableView.delegate = self;
+    _giftTableView.dataSource = self;
+    _giftTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
+    [self.view addSubview:_giftTableView];
+    // 攻略收藏视图
+    _strategTableyView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_giftBtn.frame), kWidth, kHeight*0.4) style:UITableViewStylePlain];
+    [_strategTableyView registerClass:[UITableViewCell class] forCellReuseIdentifier:giftCell];
+    _strategTableyView.delegate = self;
+    _strategTableyView.dataSource = self;
+    [self.view addSubview:_strategTableyView];
+    _strategTableyView.hidden = YES;
 }
+
+- (void)_loadData {
+    [[CollectFmbd sharedManager] readAllProvinces:^(FMDatabase *db, BOOL success, NSArray *resultArray) {
+        self.countArray = [resultArray mutableCopy];
+    }];
+    [_giftTableView reloadData];
+}
+
+
+#pragma mark - TableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.countArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    typedef NS_ENUM(NSInteger, UITableViewCellStyle) {
+//        UITableViewCellStyleDefault,    // 左侧显示textLabel（不显示detailTextLabel），imageView可选（显示在最左边）
+//        UITableViewCellStyleValue1,        // 左侧显示textLabel、右侧显示detailTextLabel（默认蓝色），imageView可选（显示在最左边）
+//        UITableViewCellStyleValue2,        // 左侧依次显示textLabel(默认蓝色)和detailTextLabel，imageView可选（显示在最左边）
+//        UITableViewCellStyleSubtitle    // 左上方显示textLabel，左下方显示detailTextLabel（默认灰色）,imageView可选（显示在最左边）
+//    };
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellStyleDefault;
+    ItemsModel *itemsModel = [[ItemsModel alloc] init];
+    itemsModel = self.countArray[indexPath.row];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
+    cell.textLabel.text = itemsModel.title;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+
 
 #pragma mark - 头部视图登录按钮
 - (void)logInBtnAction:(UIButton *)button {
@@ -156,18 +222,33 @@
 
 #pragma mark - 功能框视图点击礼物按钮
 - (void)giftBtnAction:(UIButton *)button {
-    button.selected = !button.selected;
-    NSLog(@"礼物");
-
+    [self _loadData];
+    _giftTableView.hidden = NO;
+    [self.view addSubview:_giftTableView];
+    _strategTableyView.hidden = YES;
+    [_strategTableyView removeFromSuperview];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    CGFloat x = button.center.x;
+    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
+    [UIView commitAnimations];
 }
 
 #pragma mark - 功能框视图点击攻略按钮
 - (void)strategyBtnAction:(UIButton *)button {
-    button.selected = !button.selected;
-    NSLog(@"攻略");
-
-
+    _giftTableView.hidden = YES;
+    [_giftTableView removeFromSuperview];
+    [self.view addSubview:_strategTableyView];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    CGFloat x = button.center.x;
+    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
+    [UIView commitAnimations];
 }
+
+
+
+
 
 
 /*
