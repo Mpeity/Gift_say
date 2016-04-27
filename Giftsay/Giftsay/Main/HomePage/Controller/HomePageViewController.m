@@ -93,6 +93,7 @@ static NSString *funcTableCellId = @"funcTableCellId";
     _funcCollectionView.backgroundColor = [UIColor clearColor];
     _funcCollectionView.contentOffset = CGPointMake(0, 0);
     _funcCollectionView.pagingEnabled = YES;
+    _funcCollectionView.itemWidth = kWidth;
     [self.view addSubview:_funcCollectionView];
     _funcCollectionView.allArray = _allArray;
 }
@@ -148,6 +149,12 @@ static NSString *funcTableCellId = @"funcTableCellId";
     } else if ([object isKindOfClass:[FuncCollectionView class]] && _classficationCollectionView.currentIndex!= index){
         [_classficationCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];        
         _classficationCollectionView.currentIndex = index;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.3];
+        CGFloat centerX = ((kWidth-kHeight*0.07)/4+5)*index+((kWidth-kHeight*0.07)/4+5)/2;
+        _classficationCollectionView.bgImgView.center = CGPointMake(centerX, _classficationCollectionView.height-3);
+        [UIView commitAnimations];
+
     } else {
         
     }

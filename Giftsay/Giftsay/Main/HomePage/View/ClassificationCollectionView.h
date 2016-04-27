@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ClassificationCollectionView : UICollectionView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-{
-    UIImageView *bgImgView; //
-}
+
 
 
 @property (nonatomic,strong) NSMutableDictionary *classificationDic;
@@ -20,5 +18,6 @@
 @property (nonatomic,strong) NSMutableArray *allArray;
 @property (nonatomic,assign)CGFloat itemWidth;
 
+@property (nonatomic,strong) UIImageView *bgImgView;
 
 @end

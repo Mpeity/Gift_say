@@ -51,6 +51,24 @@ static NSString *cellId = @"cellId";
     return _allArray.count;
 }
 
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    //targetContentOffset 目标偏移量
+    //targetContentOffset->x    
+    //调整 目标偏移
+    CGFloat itemWith = self.itemWidth;
+    CGFloat x = targetContentOffset->x;
+    NSInteger index = x/itemWith;// 5    x= 6      index  1
+    //安全处理
+    if (index < 0) {
+        index = 0;
+    } else if (index>= _allArray.count){
+        index = _allArray.count-1;
+    }
+    targetContentOffset->x = itemWith * index;  // 0
+    self.currentIndex = index;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FuncCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     cell.tag = indexPath.row;

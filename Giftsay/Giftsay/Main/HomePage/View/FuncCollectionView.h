@@ -21,6 +21,8 @@
 
 @property (nonatomic,assign)NSInteger currentIndex;//记录 中间cell 的索引
 
+@property (nonatomic,assign)CGFloat itemWidth;
+
 
 
 
