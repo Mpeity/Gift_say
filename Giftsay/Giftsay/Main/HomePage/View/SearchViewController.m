@@ -7,66 +7,122 @@
 //
 
 #import "SearchViewController.h"
+#import "FuncTableViewCell.h"
+#import "ItemsModel.h"
+#import "ItemsViewController.h"
 
-@interface SearchViewController ()<UISearchBarDelegate>
+static NSString *searchCellId = @"searchCellId";
+
+@interface SearchViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
-    UISearchBar *_searchBar;
+    UITableView         *_tbView;
+    NSInteger            _index;
+    UISearchBar         *_searchBar;
+    NSMutableArray      *_selectionDataArr;
 }
-
 @end
 
 @implementation SearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self _createSubviews];
+    self.view.backgroundColor = [UIColor whiteColor];
+    _index = 0;
+    _selectionDataArr = [NSMutableArray arrayWithCapacity:0];
+    // 创建按钮
+    [self createUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)_createSubviews {
-    _searchBar = [[UISearchBar alloc   ] initWithFrame:CGRectZero];
+#pragma mark -- 创建按钮
+- (void)createUI
+{
+    // 创建搜索框
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kWidth - 150, 40)];
+    _searchBar.showsCancelButton = YES;
+    _searchBar.placeholder = @"搜索";
+    _searchBar.delegate = self;
     self.navigationItem.titleView = _searchBar;
-    [_searchBar setPlaceholder:@"Search"]; // 搜索框的占位符
-    [_searchBar setPrompt:@"Prompt"]; // 顶部提示文本，相当于控件的title
-    [_searchBar setBarStyle:UIBarStyleDefault]; // 搜索框样式
-    [_searchBar setTintColor:[UIColor blackColor]]; // 搜索框的颜色,当设置此属性时，barStyle将失效
-//    [_searchBar setTranslucent:YES]; // 设置是否透明
-//    [_searchBar setBackgroundImage:[UIImage imageNamed:@"me_profilebackground@2x"]]; // 设置背景图片
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"me_profilebackground@2x"] forState:UIControlStateNormal]; // 设置搜索框中文本框的背景
-    [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)]; // 设置搜索框的背景的偏移量
-    [_searchBar setSearchResultsButtonSelected:NO]; // 设置搜索结果按钮是否选中
-    [_searchBar setShowsSearchResultsButton:YES]; // 设置是否显示搜索结果按钮
-    [_searchBar setSearchTextPositionAdjustment:UIOffsetMake(0, 0)]; // 设置搜索框中文本框的文本偏移量
-    
-    UIView *hideView = [[UIView alloc] initWithFrame:CGRectZero];
-    hideView.backgroundColor = [UIColor redColor];
-    [_searchBar setInputAccessoryView:hideView]; //提供一个遮盖视图
-    [_searchBar setKeyboardType:UIKeyboardTypeEmailAddress]; // 设置键盘的样式
     
     
-    // 设置搜索框下边的分栏条
-    [_searchBar setShowsScopeBar:YES]; // 是否显示分栏条
-    [_searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"Singer",@"Song",@"Album", nil]]; // 分栏条，栏目
-    [_searchBar setScopeBarBackgroundImage:[UIImage imageNamed:@"me_profilebackground@2x"]]; // 分栏条的背景颜色
-    [_searchBar setSelectedScopeButtonIndex:1]; // 分栏条默认选中的按钮下标
-    
-    [_searchBar setShowsBookmarkButton:YES]; // 是否显示右侧的“书图标”
-    [_searchBar setShowsCancelButton:YES]; //是否显示取消按钮
-    // 是否提供自动修正功能（这个方法一般不用的）
-    [_searchBar setSpellCheckingType:UITextSpellCheckingTypeYes]; // 设置自动检查的类型
-    [_searchBar setAutocorrectionType:UITextAutocorrectionTypeDefault]; // 是否提供自动修正功能，一般设置为UITextAutocorrectionTypeDefault
-    _searchBar.delegate = self; // 设置代理
-    
-    
-    
-
+    _tbView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight - 114)];
+    _tbView.delegate = self;
+    _tbView.dataSource = self;
+    _tbView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UINib *nib = [UINib nibWithNibName:@"FuncTableViewCell" bundle:nil];
+    [_tbView registerNib:nib forCellReuseIdentifier:searchCellId];
+    [self.view addSubview:_tbView];
 }
+
+- (void)loadData {
+    // 拼接参数
+    NSString *url = [[NSString stringWithFormat:SEARCHURL,_searchBar.text,@"0"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [DataService requestUrl:url httpMethod:@"GET" params:nil block:^(id result) {
+        NSLog(@"%@",result);
+        //        "ad_monitors": [ ],
+        //        "cover_image_url": "http://img02.liwushuo.com/image/150505/kei97t4a7.jpg-w640",
+        //        "cover_webp_url": "http://img02.liwushuo.com/image/150505/kei97t4a7.jpg?imageView2/0/w/640/q/85/format/webp",
+        //        "id": 1000453,
+        //        "liked": false,
+        //        "likes_count": 32060,
+        //        "title": "香水控—男士香水篇"
+        for (NSDictionary *dic in result[@"data"][@"posts"]) {
+            ItemsModel *itemsModel = [[ItemsModel alloc] init];
+            itemsModel.title = [dic objectForKey:@"title"];
+            itemsModel.likes_count = [[dic objectForKey:@"likes_count"] integerValue];
+            itemsModel.url = [dic objectForKey:@"url"];
+            itemsModel.identity = [[dic objectForKey:@"id"] integerValue];
+            itemsModel.cover_webp_url = [dic objectForKey:@"cover_webp_url"];
+            itemsModel.cover_image_url = [dic objectForKey:@"cover_image_url"];
+            [_selectionDataArr addObject:itemsModel];
+        }
+        
+        [_tbView reloadData];
+    }];
+}
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _selectionDataArr.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ID"];
+    //    FuncTableViewCell *cell = [tableView cellWithTableView:tableView];
+    //    cell.model = _selectionDataArr[indexPath.row];
+    FuncTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellId];
+    cell.itemsModel = _selectionDataArr[indexPath.row];
+    return cell;
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemsViewController *itemsVc = [[ItemsViewController alloc] init];
+    ItemsModel *itemsModel = _selectionDataArr[indexPath.row];
+    itemsVc.itemsModel = itemsModel;
+    [self.navigationController pushViewController:itemsVc animated:NO];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 180;
+}
+
+#pragma mark -- UISearchBarDelegate
+#pragma mark 点击取消按钮
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+#pragma mark 点击搜索按钮的代理方法
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (0 == searchBar.text.length) return;
+    [searchBar resignFirstResponder];
+    [self loadData];
+}
+
+
 
 /*
 #pragma mark - Navigation
