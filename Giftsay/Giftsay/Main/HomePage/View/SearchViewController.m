@@ -88,9 +88,6 @@ static NSString *searchCellId = @"searchCellId";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ID"];
-    //    FuncTableViewCell *cell = [tableView cellWithTableView:tableView];
-    //    cell.model = _selectionDataArr[indexPath.row];
     FuncTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellId];
     cell.itemsModel = _selectionDataArr[indexPath.row];
     return cell;

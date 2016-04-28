@@ -77,8 +77,6 @@
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[i] image:[UIImage imageNamed:imgNames[i]] tag:i];
         //渲染保持原图
         tabBarItem.selectedImage = [[UIImage imageNamed:selectedImgNames[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //调整image title 位置 如果同时有image和label，那这时候image的上左下是相对于button，右边是相对于label的；title的上右下是相对于button，左边是相对于image的 top left bottom right
-        tabBarItem.imageInsets = UIEdgeInsetsMake(0, 0, 3, 0);
         UIViewController *vc = self.viewControllers[i];
         vc.tabBarItem = tabBarItem;
     }
