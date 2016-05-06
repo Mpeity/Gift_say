@@ -42,10 +42,12 @@
 }
 
 #pragma mark - IBAction
-- (void)goBack:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
+
+- (IBAction)backAction:(id)sender {
+        [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 #pragma mark - Methods
 /**

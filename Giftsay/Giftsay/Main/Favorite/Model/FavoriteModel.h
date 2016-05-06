@@ -61,5 +61,6 @@
 @property (nonatomic,copy) NSString *url; //
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,assign) NSInteger editor_id; //
+@property (nonatomic,assign) NSInteger identity;
 
 @end

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GiftView : UIView
+@interface GiftView : UIView<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+
+@property (nonatomic,strong) NSMutableDictionary *favoriteDic;
+
+@property (nonatomic,strong) NSMutableArray *favoriteArray;
+
+@property (nonatomic,strong) UICollectionView *favoriteCollectionView;
+
+
 
 @end

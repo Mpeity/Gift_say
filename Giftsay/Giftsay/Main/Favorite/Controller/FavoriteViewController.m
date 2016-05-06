@@ -98,6 +98,7 @@ static NSString *cell_Id = @"cell_Id";
                 favoriteModel.url = [dic objectForKey:@"url"];
                 favoriteModel.purchase_url = [dic objectForKey:@"purchase_url"];
                 favoriteModel.editor_id = [[dic objectForKey:@"editor_id"] integerValue];
+                favoriteModel.identity = [[dic objectForKey:@"id"] integerValue];
                 //把modal放到数组里面
                 [_favoriteArray addObject:favoriteModel];
             }
@@ -173,6 +174,8 @@ static NSString *cell_Id = @"cell_Id";
             favoriteModel.url = [dic objectForKey:@"url"];
             favoriteModel.purchase_url = [dic objectForKey:@"purchase_url"];
             favoriteModel.editor_id = [[dic objectForKey:@"editor_id"] integerValue];
+            favoriteModel.identity = [[dic objectForKey:@"id"] integerValue];
+
             //把modal放到数组里面
             [_favoriteArray addObject:favoriteModel];
         }

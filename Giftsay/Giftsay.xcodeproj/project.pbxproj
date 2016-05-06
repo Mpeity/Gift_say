@@ -1086,6 +1086,7 @@
 		126E70C71C3A3C7E0062C8F6 /* GiftsayUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E70C61C3A3C7E0062C8F6 /* GiftsayUITests.m */; };
 		126FC5171C995A5A003786FB /* TaoBaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5161C995A5A003786FB /* TaoBaoViewController.m */; };
 		126FDF431CCE107D003C3E2B /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126FDF421CCE107D003C3E2B /* BaseWebViewController.m */; };
+		1271E5D31CDC705D0087E5A5 /* GiftFmdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271E5D21CDC705D0087E5A5 /* GiftFmdb.m */; };
 		1275F3A41CA28AAA00EEB97F /* SpecialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1275F3A31CA28AAA00EEB97F /* SpecialViewController.m */; };
 		1275F3A81CA28ACF00EEB97F /* SpecialCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1275F3A61CA28ACF00EEB97F /* SpecialCollectionViewCell.m */; };
 		1275F3A91CA28ACF00EEB97F /* SpecialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1275F3A71CA28ACF00EEB97F /* SpecialCollectionViewCell.xib */; };
@@ -2324,6 +2325,8 @@
 		126FC5161C995A5A003786FB /* TaoBaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoViewController.m; sourceTree = "<group>"; };
 		126FDF411CCE107D003C3E2B /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseWebViewController.h; path = ../HomePage/View/BaseWebViewController.h; sourceTree = "<group>"; };
 		126FDF421CCE107D003C3E2B /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseWebViewController.m; path = ../HomePage/View/BaseWebViewController.m; sourceTree = "<group>"; };
+		1271E5D11CDC705D0087E5A5 /* GiftFmdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftFmdb.h; sourceTree = "<group>"; };
+		1271E5D21CDC705D0087E5A5 /* GiftFmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftFmdb.m; sourceTree = "<group>"; };
 		1275F3A21CA28AAA00EEB97F /* SpecialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialViewController.h; sourceTree = "<group>"; };
 		1275F3A31CA28AAA00EEB97F /* SpecialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialViewController.m; sourceTree = "<group>"; };
 		1275F3A51CA28ACF00EEB97F /* SpecialCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCollectionViewCell.h; sourceTree = "<group>"; };
@@ -3670,6 +3673,8 @@
 				126FDF421CCE107D003C3E2B /* BaseWebViewController.m */,
 				127A97431CCF10C300C3E75D /* CollectFmbd.h */,
 				127A97441CCF10C300C3E75D /* CollectFmbd.m */,
+				1271E5D11CDC705D0087E5A5 /* GiftFmdb.h */,
+				1271E5D21CDC705D0087E5A5 /* GiftFmdb.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -5450,6 +5455,7 @@
 				1202903E1C7ED89A004BBEEF /* IndividualViewController.m in Sources */,
 				127A973C1CCF101200C3E75D /* FMDatabase.m in Sources */,
 				12C675401C85224F0006EB6A /* SXMarquee.m in Sources */,
+				1271E5D31CDC705D0087E5A5 /* GiftFmdb.m in Sources */,
 				1253A88B1CA5559100D4DDE0 /* LoginViewController.m in Sources */,
 				12C89EE51CCDE8FE0016E3A5 /* BaseCollectionView.m in Sources */,
 				12C6753E1C85224F0006EB6A /* SXColorGradientView.m in Sources */,

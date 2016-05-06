@@ -44,7 +44,7 @@ static NSString *searchCellId = @"searchCellId";
     self.navigationItem.titleView = _searchBar;
     
     
-    _tbView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight - 114)];
+    _tbView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight - 49)];
     _tbView.delegate = self;
     _tbView.dataSource = self;
     _tbView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -12,6 +12,8 @@
 #import "CodeScanController.h"
 #import "CollectFmbd.h"
 #import "ItemsModel.h"
+#import "GiftFmdb.h"
+#import "FavoriteModel.h"
 
 static NSString *giftCell = @"giftCell";
 
@@ -28,6 +30,8 @@ static NSString *giftCell = @"giftCell";
 }
 
 @property (nonatomic,strong) NSMutableArray *countArray;
+
+@property (nonatomic,strong) NSMutableArray *giftArray;
 
 @end
 
@@ -60,7 +64,8 @@ static NSString *giftCell = @"giftCell";
 - (void)scanBtnAction:(UIButton *)button {
     NSLog(@"扫描");
     CodeScanController *vc = [[CodeScanController alloc] init];
-    [self presentViewController:vc animated:NO completion:nil];
+//    [self presentViewController:vc animated:NO completion:nil];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 #pragma mark - 创建子视图
@@ -140,7 +145,7 @@ static NSString *giftCell = @"giftCell";
     
     
     // 礼物按钮
-    _giftBtn = [[UIButton alloc] initWithFrame:CGRectMake(-2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
+    _giftBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWidth/2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
     _giftBtn.layer.borderWidth = 1;
     _giftBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     [_giftBtn setTitle:@"礼物" forState:UIControlStateNormal];
@@ -150,7 +155,7 @@ static NSString *giftCell = @"giftCell";
     [self.view addSubview:_giftBtn];
     
     // 攻略按钮
-    _strategyBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWidth/2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
+    _strategyBtn = [[UIButton alloc] initWithFrame:CGRectMake(-2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
     _strategyBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _strategyBtn.layer.borderWidth = 1;
     [_strategyBtn setTitle:@"攻略" forState:UIControlStateNormal];
@@ -185,6 +190,13 @@ static NSString *giftCell = @"giftCell";
     [[CollectFmbd sharedManager] readAllProvinces:^(FMDatabase *db, BOOL success, NSArray *resultArray) {
         self.countArray = [resultArray mutableCopy];
     }];
+    [_strategTableyView reloadData];
+}
+
+- (void)_loadGiftData {
+    [[GiftFmdb sharedManager] readAllProvinces:^(FMDatabase *db, BOOL success, NSArray *resultArray) {
+        self.giftArray = [resultArray mutableCopy];
+    }];
     [_giftTableView reloadData];
 }
 
@@ -203,10 +215,19 @@ static NSString *giftCell = @"giftCell";
 //    };
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellStyleDefault;
-    ItemsModel *itemsModel = [[ItemsModel alloc] init];
-    itemsModel = self.countArray[indexPath.row];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
-    cell.textLabel.text = itemsModel.title;
+//    if ([tableView isEqual:_strategTableyView]) {
+        ItemsModel *itemsModel = [[ItemsModel alloc] init];
+        itemsModel = self.countArray[indexPath.row];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
+        cell.textLabel.text = itemsModel.title;
+//    }
+//    if ([tableView isEqual:_giftTableView]) {
+//        FavoriteModel *model = [[FavoriteModel alloc] init];
+//        model = self.giftArray[indexPath.row];
+//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.cover_image_url]];
+//        cell.textLabel.text = model.description;
+//    }
+
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -222,7 +243,7 @@ static NSString *giftCell = @"giftCell";
 
 #pragma mark - 功能框视图点击礼物按钮
 - (void)giftBtnAction:(UIButton *)button {
-    [self _loadData];
+    [self _loadGiftData];
     _giftTableView.hidden = NO;
     [self.view addSubview:_giftTableView];
     _strategTableyView.hidden = YES;
@@ -236,6 +257,7 @@ static NSString *giftCell = @"giftCell";
 
 #pragma mark - 功能框视图点击攻略按钮
 - (void)strategyBtnAction:(UIButton *)button {
+    [self _loadData];
     _giftTableView.hidden = YES;
     [_giftTableView removeFromSuperview];
     [self.view addSubview:_strategTableyView];

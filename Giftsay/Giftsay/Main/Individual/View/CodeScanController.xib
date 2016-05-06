@@ -24,7 +24,7 @@
                     </constraints>
                 </imageView>
                 <view alpha="0.59999999999999964" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2b-op-lGH" userLabel="ViewBottom">
-                    <rect key="frame" x="0.0" y="315" width="375" height="189"/>
+                    <rect key="frame" x="0.0" y="315" width="375" height="178"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二维码放置在扫描框内可自动扫描" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-5x-y3b">
@@ -55,22 +55,35 @@
                         <constraint firstAttribute="width" constant="225" id="aGC-mZ-OgL"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBp-kZ-U0Y">
+                    <rect key="frame" x="167" y="523" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Oo5-jA-Zux"/>
+                        <constraint firstAttribute="width" constant="50" id="zRg-on-T4C"/>
+                    </constraints>
+                    <state key="normal" title="返回"/>
+                    <connections>
+                        <action selector="backAction:" destination="-1" eventType="touchUpInside" id="vBx-8g-IYs"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="sSR-5x-y3b" firstAttribute="leading" secondItem="HW9-HV-A3C" secondAttribute="leading" id="1R7-3c-9ub"/>
                 <constraint firstItem="dFF-ek-XiM" firstAttribute="bottom" secondItem="9Nz-ha-JmK" secondAttribute="bottom" id="8f9-Ig-d9R"/>
+                <constraint firstAttribute="bottom" secondItem="nBp-kZ-U0Y" secondAttribute="bottom" constant="30" id="ASH-rv-LHM"/>
                 <constraint firstItem="755-eF-qJ5" firstAttribute="top" secondItem="N6c-gU-lRM" secondAttribute="bottom" constant="5" id="ChF-NB-vWC"/>
                 <constraint firstItem="fp1-dR-O5S" firstAttribute="leading" secondItem="HW9-HV-A3C" secondAttribute="leading" id="DrO-k4-FAZ"/>
                 <constraint firstItem="N6c-gU-lRM" firstAttribute="leading" secondItem="HW9-HV-A3C" secondAttribute="leading" id="LSk-3g-Bxs"/>
                 <constraint firstItem="9Nz-ha-JmK" firstAttribute="top" secondItem="N6c-gU-lRM" secondAttribute="bottom" id="N7F-Vv-kOO"/>
                 <constraint firstAttribute="trailing" secondItem="R2b-op-lGH" secondAttribute="trailing" id="R86-BZ-bNg"/>
                 <constraint firstItem="9Nz-ha-JmK" firstAttribute="top" secondItem="fp1-dR-O5S" secondAttribute="top" id="WGW-Th-lBI"/>
-                <constraint firstAttribute="bottom" secondItem="R2b-op-lGH" secondAttribute="bottom" constant="99" id="Wrs-Jo-dzJ"/>
                 <constraint firstItem="R2b-op-lGH" firstAttribute="leading" secondItem="HW9-HV-A3C" secondAttribute="leading" id="YIs-sC-0D6"/>
                 <constraint firstItem="dFF-ek-XiM" firstAttribute="top" secondItem="HW9-HV-A3C" secondAttribute="top" constant="90" id="b7y-u9-qFL"/>
                 <constraint firstItem="sSR-5x-y3b" firstAttribute="top" secondItem="dFF-ek-XiM" secondAttribute="bottom" constant="15" id="dbc-0g-Lhj"/>
                 <constraint firstItem="9Nz-ha-JmK" firstAttribute="bottom" secondItem="fp1-dR-O5S" secondAttribute="bottom" id="fhT-Bs-Ilv"/>
+                <constraint firstItem="nBp-kZ-U0Y" firstAttribute="leading" secondItem="HW9-HV-A3C" secondAttribute="leading" constant="167" id="fkO-58-3bN"/>
+                <constraint firstItem="nBp-kZ-U0Y" firstAttribute="top" secondItem="R2b-op-lGH" secondAttribute="bottom" constant="30" id="hF9-2v-cOU"/>
                 <constraint firstAttribute="trailing" secondItem="dFF-ek-XiM" secondAttribute="trailing" id="iWq-8F-f6X"/>
                 <constraint firstAttribute="trailing" secondItem="N6c-gU-lRM" secondAttribute="trailing" id="rAe-51-bn4"/>
                 <constraint firstItem="R2b-op-lGH" firstAttribute="top" secondItem="9Nz-ha-JmK" secondAttribute="bottom" id="sMh-Aq-mBL"/>
@@ -85,7 +98,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="507" y="394"/>
+            <point key="canvasLocation" x="289.5" y="395.5"/>
         </view>
     </objects>
     <resources>

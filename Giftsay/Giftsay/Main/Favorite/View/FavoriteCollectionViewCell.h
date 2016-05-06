@@ -24,6 +24,7 @@
 //@property (nonatomic,copy) NSString *purchase_url; //
 //@property (nonatomic,strong) NSURL *url; //
 
+@property (weak, nonatomic) IBOutlet UIButton *clickButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverImgView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
