@@ -8,6 +8,7 @@
 
 #import "CollectFmbd.h"
 #import "BaseModel.h"
+#import "ItemsModel.h"
 
 @implementation CollectFmbd
 
@@ -42,7 +43,7 @@
 //     创建数据库表
 //     提供一个多线程安全的数据库实例
         [queue inDatabase:^(FMDatabase *db) {
-            BOOL flag = [db executeUpdate:@"create table if not exists t_collectFMDB (id integer primary key autoincrement,identity integer,title text,coverImageUrl text)"];
+            BOOL flag = [db executeUpdate:@"create table if not exists t_collectFMDB (id integer primary key autoincrement,identity integer,title text,coverImageUrl text,url text)"];
             if (flag) {
                 NSLog(@"创建表 success");
             } else {
@@ -53,10 +54,10 @@
 }
 
 // 添加数据
-- (void)addIndex:(NSInteger)identity WithTitle:(NSString *)title WithCoverImgUrl:(NSString *)coverImageUrl {
+- (void)addIndex:(NSInteger)identity WithTitle:(NSString *)title WithCoverImgUrl:(NSString *)coverImageUrl WithUrl:(NSString *)url {
     [self createDb];
     [_queue inDatabase:^(FMDatabase *db) {
-        BOOL flag = [db executeUpdate:@"insert into t_collectFMDB (identity,title,coverImageUrl) values (?,?,?)",[NSNumber numberWithInteger:identity],title,coverImageUrl];
+        BOOL flag = [db executeUpdate:@"insert into t_collectFMDB (identity,title,coverImageUrl,url) values (?,?,?,?)",[NSNumber numberWithInteger:identity],title,coverImageUrl,url];
         if (flag) {
             NSLog(@"add success");
         } else {
@@ -129,7 +130,14 @@
             baseModel.title = [resultSet stringForColumn:@"title"];
             baseModel.cover_image_url = [resultSet stringForColumn:@"coverImageUrl"];
             baseModel.identity = [[resultSet stringForColumn:@"identity"] integerValue];
+            baseModel.url = [resultSet stringForColumn:@"url"];
             [arrM addObject:baseModel];
+//            ItemsModel *baseModel = [[ItemsModel  alloc] init];
+//            baseModel.title = [resultSet stringForColumn:@"title"];
+//            baseModel.cover_image_url = [resultSet stringForColumn:@"coverImageUrl"];
+//            baseModel.identity = [[resultSet stringForColumn:@"identity"] integerValue];
+//            baseModel.url = [resultSet stringForColumn:@"url"];
+//            [arrM addObject:baseModel];
         }
         [resultSet close];
         

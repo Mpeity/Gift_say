@@ -65,7 +65,7 @@
     if (button.selected) {
         button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
         button.titleEdgeInsets = UIEdgeInsetsMake(37,55, 0, 0);
-        [[CollectFmbd sharedManager] addIndex:self.baseModel.identity  WithTitle:self.baseModel.title WithCoverImgUrl:self.baseModel.cover_image_url];
+        [[CollectFmbd sharedManager] addIndex:self.baseModel.identity  WithTitle:self.baseModel.title WithCoverImgUrl:self.baseModel.cover_image_url WithUrl:self.baseModel.url];
     } else {
         button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
         button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);

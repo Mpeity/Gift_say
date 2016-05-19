@@ -7,7 +7,6 @@
 //
 
 #import "FavoriteCollectionViewCell.h"
-#import "GiftFmdb.h"
 
 @implementation FavoriteCollectionViewCell
 
@@ -46,15 +45,7 @@
 }
 
 
-//- (void)clickButton:(id)sender {
-//    UIButton *button = (UIButton *)sender;
-//    button.selected = !button.selected;
-//    if (button.selected) {
-//    [[GiftFmdb sharedManager] addIndex:self.favoriteModel.identity  WithTitle:self.favoriteModel.description WithCoverImgUrl:self.favoriteModel.cover_image_url];
-//    } else {
-//        [[GiftFmdb sharedManager] deleteDataWithIndex:self.favoriteModel.identity];
-//    }    
-//}
+
 
 
 

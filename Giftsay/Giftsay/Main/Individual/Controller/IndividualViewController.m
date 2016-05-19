@@ -12,8 +12,9 @@
 #import "CodeScanController.h"
 #import "CollectFmbd.h"
 #import "ItemsModel.h"
-#import "GiftFmdb.h"
 #import "FavoriteModel.h"
+#import "PlayerViewController.h"
+#import "ItemsViewController.h"
 
 static NSString *giftCell = @"giftCell";
 
@@ -68,6 +69,14 @@ static NSString *giftCell = @"giftCell";
     [self.navigationController pushViewController:vc animated:NO];
 }
 
+- (void)playerBtnAction:(UIButton *)button {
+    PlayerViewController *vc = [[PlayerViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:NO];
+        [self presentViewController:vc animated:NO completion:nil];
+
+}
+
+
 #pragma mark - 创建子视图
 - (void)_createSubviews {
     self.navigationController.navigationBarHidden = YES;
@@ -75,13 +84,14 @@ static NSString *giftCell = @"giftCell";
     // 头部背景视图
     _bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight*0.35)];
     _bgImgView.userInteractionEnabled = YES;
-    _bgImgView.image = [UIImage imageNamed:@"me_profilebackground@2x.jpg"];
+    _bgImgView.image = [UIImage imageNamed:@"个人背景.jpg"];
     [self.view addSubview:_bgImgView];
     
     // 左边button  icon_login_message
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 25, 20, 20)];
     [leftButton addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [leftButton setImage:[UIImage imageNamed:@"icon_message"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(playerBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_bgImgView addSubview:leftButton];
     
     
@@ -124,28 +134,34 @@ static NSString *giftCell = @"giftCell";
     
     // 功能框视图
     _funcView = [[UIView alloc] initWithFrame:CGRectMake(0, _bgImgView.height, kWidth, kHeight*0.1)];
-    _funcView.backgroundColor = [UIColor lavender];
+    UIImageView *funcBgImgView = [[UIImageView alloc] initWithFrame:_funcView.bounds];
+    [funcBgImgView sd_setImageWithURL:[NSURL URLWithString:@"http://image7.360doc.com/DownloadImg/2010/01/1013/2141262_216.jpg"]];
+    [_funcView addSubview:funcBgImgView];
     [self.view addSubview:_funcView];
-    NSArray *titleArray = @[@"购物车",@"订单",@"礼券",@"客服"];
-    // Xicon_cart  Xicon_coupon  Xicon_order Xicon_service
-    NSArray *imgNameArray = @[@"Xicon_cart",@"Xicon_order",@"Xicon_coupon",@"Xicon_service"];
-    for (int i = 0; i<4; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20+i*90, 0, 70, _funcView.height)];
-        [_funcView addSubview:button];
-        [button setTitle:titleArray[i] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setFont:[UIFont systemFontOfSize:14]];
-        [button setImage:[UIImage imageNamed:imgNameArray[i]] forState:UIControlStateNormal];
-        button.tag = i;
-        button.titleEdgeInsets = UIEdgeInsetsMake(43, -50, 3, 0);
-        button.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 26.7, 20);
-    }
+  
+//    _funcView.backgroundColor = [UIColor lavender];
+    
+//    [self.view addSubview:_funcView];
+//    NSArray *titleArray = @[@"购物车",@"订单",@"礼券",@"客服"];
+//    // Xicon_cart  Xicon_coupon  Xicon_order Xicon_service
+//    NSArray *imgNameArray = @[@"Xicon_cart",@"Xicon_order",@"Xicon_coupon",@"Xicon_service"];
+//    for (int i = 0; i<4; i++) {
+//        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20+i*90, 0, 70, _funcView.height)];
+//        [_funcView addSubview:button];
+//        [button setTitle:titleArray[i] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [button setFont:[UIFont systemFontOfSize:14]];
+//        [button setImage:[UIImage imageNamed:imgNameArray[i]] forState:UIControlStateNormal];
+//        button.tag = i;
+//        button.titleEdgeInsets = UIEdgeInsetsMake(43, -50, 3, 0);
+//        button.imageEdgeInsets = UIEdgeInsetsMake(10, 20, 26.7, 20);
+//    }
     
     
     
     
     // 礼物按钮
-    _giftBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWidth/2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
+    _giftBtn = [[UIButton alloc] initWithFrame:CGRectMake(-2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
     _giftBtn.layer.borderWidth = 1;
     _giftBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     [_giftBtn setTitle:@"礼物" forState:UIControlStateNormal];
@@ -155,7 +171,7 @@ static NSString *giftCell = @"giftCell";
     [self.view addSubview:_giftBtn];
     
     // 攻略按钮
-    _strategyBtn = [[UIButton alloc] initWithFrame:CGRectMake(-2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
+    _strategyBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWidth/2, CGRectGetMaxY(_funcView.frame)+10, kWidth/2+2, kHeight*0.06)];
     _strategyBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _strategyBtn.layer.borderWidth = 1;
     [_strategyBtn setTitle:@"攻略" forState:UIControlStateNormal];
@@ -171,7 +187,7 @@ static NSString *giftCell = @"giftCell";
     
     // 礼物收藏视图
     _giftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_giftBtn.frame), kWidth, kHeight*0.4) style:UITableViewStylePlain];
-    [_giftTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:giftCell];
+//    [_giftTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:giftCell];
     _giftTableView.delegate = self;
     _giftTableView.dataSource = self;
     _giftTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -193,12 +209,6 @@ static NSString *giftCell = @"giftCell";
     [_strategTableyView reloadData];
 }
 
-- (void)_loadGiftData {
-    [[GiftFmdb sharedManager] readAllProvinces:^(FMDatabase *db, BOOL success, NSArray *resultArray) {
-        self.giftArray = [resultArray mutableCopy];
-    }];
-    [_giftTableView reloadData];
-}
 
 
 #pragma mark - TableViewDelegate
@@ -215,23 +225,27 @@ static NSString *giftCell = @"giftCell";
 //    };
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellStyleDefault;
-//    if ([tableView isEqual:_strategTableyView]) {
         ItemsModel *itemsModel = [[ItemsModel alloc] init];
         itemsModel = self.countArray[indexPath.row];
+    NSLog(@"%@",self.countArray);
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
         cell.textLabel.text = itemsModel.title;
-//    }
-//    if ([tableView isEqual:_giftTableView]) {
-//        FavoriteModel *model = [[FavoriteModel alloc] init];
-//        model = self.giftArray[indexPath.row];
-//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.cover_image_url]];
-//        cell.textLabel.text = model.description;
-//    }
 
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemsModel *itemsModel = [[ItemsModel alloc] init];
+    itemsModel = self.countArray[indexPath.row];
+    ItemsViewController *vc = [[ItemsViewController alloc] init];
+    vc.itemsModel = itemsModel;
+    [self presentViewController:vc animated:NO completion:nil];
+    
+}
 
 
 #pragma mark - 头部视图登录按钮
@@ -243,7 +257,6 @@ static NSString *giftCell = @"giftCell";
 
 #pragma mark - 功能框视图点击礼物按钮
 - (void)giftBtnAction:(UIButton *)button {
-    [self _loadGiftData];
     _giftTableView.hidden = NO;
     [self.view addSubview:_giftTableView];
     _strategTableyView.hidden = YES;
@@ -267,7 +280,6 @@ static NSString *giftCell = @"giftCell";
     _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
     [UIView commitAnimations];
 }
-
 
 
 

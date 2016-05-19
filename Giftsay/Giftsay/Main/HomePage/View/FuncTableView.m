@@ -49,7 +49,7 @@ static NSString *tableCellId = @"tableCellId";
 // 获取数据 并解析
 - (void)_loadDada {
     [DataService requestUrl:ITEMSURL httpMethod:@"GET" params:nil block:^(id result) {
-//        NSLog(@"%@",result);
+        NSLog(@"%@",result);
         NSArray *itemArray = [[result objectForKey:@"data"] objectForKey:@"items"];
         for (NSDictionary *dic in itemArray) {
             ItemsModel *itemsModel = [[ItemsModel alloc] init];
@@ -61,6 +61,7 @@ static NSString *tableCellId = @"tableCellId";
             itemsModel.likes_count = [[dic objectForKey:@"likes_count"] integerValue];
             itemsModel.cover_webp_url = [dic objectForKey:@"cover_webp_url"];
             itemsModel.cover_image_url = [dic objectForKey:@"cover_image_url"];
+            itemsModel.identity = [[dic objectForKey:@"id"] integerValue];
             [_itemArray addObject:itemsModel];
         }
         [self reloadData];

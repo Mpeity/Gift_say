@@ -63,7 +63,7 @@
         button.titleEdgeInsets = UIEdgeInsetsMake(37,-35, 0, 0);
 //        button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
 //        button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);
-        [[CollectFmbd sharedManager] addIndex:self.itemsModel.identity  WithTitle:self.itemsModel.title WithCoverImgUrl:self.itemsModel.cover_image_url];
+        [[CollectFmbd sharedManager] addIndex:self.itemsModel.identity  WithTitle:self.itemsModel.title WithCoverImgUrl:self.itemsModel.cover_image_url WithUrl:self.itemsModel.url];
     } else {
         button.imageEdgeInsets = UIEdgeInsetsMake(3, 10, 24, 10);
         button.titleEdgeInsets = UIEdgeInsetsMake(37,-55, 0, 0);

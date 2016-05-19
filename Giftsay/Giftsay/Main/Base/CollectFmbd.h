@@ -20,7 +20,7 @@ typedef void(^DBAllResultBlock)(FMDatabase *db, BOOL success, NSArray *resultArr
 
 + (instancetype)sharedManager;
 // 添加数据
-- (void)addIndex:(NSInteger)identity WithTitle:(NSString *)title WithCoverImgUrl:(NSString *)coverImageUrl;
+- (void)addIndex:(NSInteger)identity WithTitle:(NSString *)title WithCoverImgUrl:(NSString *)coverImageUrl WithUrl:(NSString *)url;
 - (void)readAllProvinces:(DBAllResultBlock)resultBlock;
 
 - (void)deleteDataWithIndex:(NSInteger)identity;
