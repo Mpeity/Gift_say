@@ -1108,6 +1108,8 @@
 		127D4BDF1CED7F0700C7ECA2 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 127D4BDB1CED7F0700C7ECA2 /* play.png */; };
 		127D4BE01CED7F0700C7ECA2 /* yequ.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 127D4BDC1CED7F0700C7ECA2 /* yequ.mp3 */; };
 		127D4BE21CEDBF4500C7ECA2 /* 个人背景.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 127D4BE11CEDBF4500C7ECA2 /* 个人背景.jpg */; };
+		127D4BE91CEDC35F00C7ECA2 /* CollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 127D4BE71CEDC35F00C7ECA2 /* CollectTableViewCell.m */; };
+		127D4BEA1CEDC35F00C7ECA2 /* CollectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 127D4BE81CEDC35F00C7ECA2 /* CollectTableViewCell.xib */; };
 		128719471C9C02FA007ABA09 /* CommonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 128719461C9C02FA007ABA09 /* CommonModel.m */; };
 		1287194A1C9F8CA5007ABA09 /* ChannelsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 128719491C9F8CA5007ABA09 /* ChannelsModel.m */; };
 		128719611C9FE948007ABA09 /* CommonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1287195F1C9FE948007ABA09 /* CommonCollectionViewCell.m */; };
@@ -2367,6 +2369,9 @@
 		127D4BDB1CED7F0700C7ECA2 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		127D4BDC1CED7F0700C7ECA2 /* yequ.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yequ.mp3; sourceTree = "<group>"; };
 		127D4BE11CEDBF4500C7ECA2 /* 个人背景.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "个人背景.jpg"; sourceTree = "<group>"; };
+		127D4BE61CEDC35F00C7ECA2 /* CollectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectTableViewCell.h; sourceTree = "<group>"; };
+		127D4BE71CEDC35F00C7ECA2 /* CollectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectTableViewCell.m; sourceTree = "<group>"; };
+		127D4BE81CEDC35F00C7ECA2 /* CollectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectTableViewCell.xib; sourceTree = "<group>"; };
 		128719451C9C02FA007ABA09 /* CommonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonModel.h; sourceTree = "<group>"; };
 		128719461C9C02FA007ABA09 /* CommonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonModel.m; sourceTree = "<group>"; };
 		128719481C9F8CA5007ABA09 /* ChannelsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsModel.h; sourceTree = "<group>"; };
@@ -3862,6 +3867,9 @@
 		1202902E1C7ED89A004BBEEF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				127D4BE61CEDC35F00C7ECA2 /* CollectTableViewCell.h */,
+				127D4BE71CEDC35F00C7ECA2 /* CollectTableViewCell.m */,
+				127D4BE81CEDC35F00C7ECA2 /* CollectTableViewCell.xib */,
 				1213522E1CD08AF900EA538E /* CommonTableViewCell.h */,
 				1213522F1CD08AF900EA538E /* CommonTableViewCell.m */,
 				121352301CD08AF900EA538E /* CommonTableViewCell.xib */,
@@ -4444,6 +4452,7 @@
 				12028E821C7ED805004BBEEF /* ig_holder_image.png in Resources */,
 				12028B101C7ED805004BBEEF /* ic_holder_comments.png in Resources */,
 				12028BCF1C7ED805004BBEEF /* emoji_1f47d.png in Resources */,
+				127D4BEA1CEDC35F00C7ECA2 /* CollectTableViewCell.xib in Resources */,
 				12028C351C7ED805004BBEEF /* abc_textfield_search_default_holo_dark.9.png in Resources */,
 				12028D2A1C7ED805004BBEEF /* mc_loading_3.png in Resources */,
 				12CE3F081C7FF32600E173DF /* loading_08.png in Resources */,
@@ -5501,6 +5510,7 @@
 				1202903C1C7ED89A004BBEEF /* HomePageViewController.m in Sources */,
 				12D970CC1C92B799004DB441 /* HeaderView.m in Sources */,
 				1275F3AC1CA28D6A00EEB97F /* SpecialDetailModel.m in Sources */,
+				127D4BE91CEDC35F00C7ECA2 /* CollectTableViewCell.m in Sources */,
 				12762AFE1C96928C003BAA27 /* JSONKit.m in Sources */,
 				12C6753F1C85224F0006EB6A /* SXColorLabel.m in Sources */,
 				12C675421C85224F0006EB6A /* UIColor+Wonderful.m in Sources */,

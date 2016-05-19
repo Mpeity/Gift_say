@@ -15,6 +15,8 @@
 #import "FavoriteModel.h"
 #import "PlayerViewController.h"
 #import "ItemsViewController.h"
+#import "CollectTableViewCell.h"
+
 
 static NSString *giftCell = @"giftCell";
 
