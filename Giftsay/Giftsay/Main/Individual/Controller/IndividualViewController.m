@@ -16,11 +16,13 @@
 #import "PlayerViewController.h"
 #import "ItemsViewController.h"
 #import "CollectTableViewCell.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+
 
 
 static NSString *giftCell = @"giftCell";
 
-@interface IndividualViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface IndividualViewController ()<UITableViewDelegate,UITableViewDataSource,TencentSessionDelegate>
 {
     UIImageView *_bgImgView; //头部背景
     UIView *_funcView; // 功能框视图
@@ -30,7 +32,15 @@ static NSString *giftCell = @"giftCell";
     UITableView *_giftTableView; //
     UITableView *_strategTableyView; //
     UIImageView *_scrollImgView; // 滑动条
+
+    UIButton *qqLoginBtn;
+    TencentOAuth *tencentOAuth;
+    NSArray *permissions;
+    UILabel *resultLable;
+    UILabel *tokenLable;
+    UIWebView *qqWebView;
 }
+
 
 @property (nonatomic,strong) NSMutableArray *countArray;
 
@@ -44,7 +54,21 @@ static NSString *giftCell = @"giftCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self performSelector:@selector(_loadData) withObject:nil afterDelay:3];
+    
+    tencentOAuth=[[TencentOAuth alloc]initWithAppId:TencentAPPId andDelegate:self];
+    //查看本地 有没有上一次QQ登录的信息
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *authData = [defaults objectForKey:@"TencentOAuthData"];
+    NSLog(@"Tencent -------%@",authData);
+    if ([authData objectForKey:@"AccessTokenKey"] && [authData objectForKey:@"ExpirationDateKey"] && [authData objectForKey:@"openId"])
+    {
+        [tencentOAuth setAccessToken:[authData objectForKey:@"AccessTokenKey"]];
+        [tencentOAuth setExpirationDate:[authData objectForKey:@"ExpirationDateKey"]];
+        [tencentOAuth setOpenId:[authData objectForKey:@"openId"]];
+        
+    }
     [self _createSubviews];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,7 +110,8 @@ static NSString *giftCell = @"giftCell";
     // 头部背景视图
     _bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight*0.35)];
     _bgImgView.userInteractionEnabled = YES;
-    _bgImgView.image = [UIImage imageNamed:@"个人背景.jpg"];
+//    _bgImgView.image = [UIImage imageNamed:@"个人背景.jpg"];
+    _bgImgView.backgroundColor = [UIColor lightGreen];
     [self.view addSubview:_bgImgView];
     
     // 左边button  icon_login_message
@@ -197,8 +222,9 @@ static NSString *giftCell = @"giftCell";
     [self.view addSubview:_giftTableView];
     // 攻略收藏视图
     _strategTableyView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_giftBtn.frame), kWidth, kHeight*0.4) style:UITableViewStylePlain];
-    [_strategTableyView registerClass:[UITableViewCell class] forCellReuseIdentifier:giftCell];
-    _strategTableyView.delegate = self;
+    UINib *nib = [UINib nibWithNibName:@"CollectTableViewCell" bundle:nil];
+    [_strategTableyView registerNib:nib forCellReuseIdentifier:giftCell];
+     _strategTableyView.delegate = self;
     _strategTableyView.dataSource = self;
     [self.view addSubview:_strategTableyView];
     _strategTableyView.hidden = YES;
@@ -225,13 +251,14 @@ static NSString *giftCell = @"giftCell";
 //        UITableViewCellStyleValue2,        // 左侧依次显示textLabel(默认蓝色)和detailTextLabel，imageView可选（显示在最左边）
 //        UITableViewCellStyleSubtitle    // 左上方显示textLabel，左下方显示detailTextLabel（默认灰色）,imageView可选（显示在最左边）
 //    };
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellStyleDefault;
-        ItemsModel *itemsModel = [[ItemsModel alloc] init];
-        itemsModel = self.countArray[indexPath.row];
-    NSLog(@"%@",self.countArray);
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
-        cell.textLabel.text = itemsModel.title;
+    CollectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
+//    cell.accessoryType = UITableViewCellStyleDefault;
+//        ItemsModel *itemsModel = [[ItemsModel alloc] init];
+//        itemsModel = self.countArray[indexPath.row];
+//    NSLog(@"%@",self.countArray);
+//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
+//        cell.textLabel.text = itemsModel.title;
+    cell.itemModel = self.countArray[indexPath.row];
 
     return cell;
 }
@@ -252,10 +279,81 @@ static NSString *giftCell = @"giftCell";
 
 #pragma mark - 头部视图登录按钮
 - (void)logInBtnAction:(UIButton *)button {
-    button.selected = !button.selected;
-    LogInViewController *vc = [[LogInViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:NO];
+//    button.selected = !button.selected;
+//    LogInViewController *vc = [[LogInViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:NO];
+    if ([tencentOAuth isSessionValid]) {
+        [tencentOAuth getUserInfo];
+    }
+    else {
+        [self qqLog];
+    }
 }
+
+//qq登陆
+- (void)qqLog{
+    //2,初始 lable
+//    resultLable=[[UILabel alloc]initWithFrame:CGRectMake(30, 100, 200, 36)];
+//    tokenLable=[[UILabel alloc]initWithFrame:CGRectMake(30, 150, 200, 36)];
+//    [self.view addSubview:resultLable];
+//    [self.view addSubview:tokenLable];
+    
+    permissions= [NSArray arrayWithObjects:@"get_user_info", @"get_simple_userinfo", @"add_t", nil];
+    [tencentOAuth authorize:permissions inSafari:NO];
+}
+
+
+
+
+#pragma mark -- TencentSessionDelegate
+
+//登陆完成调用
+- (void)tencentDidLogin
+{
+    resultLable.text = @"登录完成";
+    if (tencentOAuth.accessToken && 0 != [tencentOAuth.accessToken length])
+    {
+        // 记录登录用户的OpenID、Token以及过期时间
+        NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  tencentOAuth.accessToken, @"AccessTokenKey",
+                                  tencentOAuth.expirationDate, @"ExpirationDateKey",
+                                  tencentOAuth.openId,@"openId",nil];
+        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"TencentOAuthData"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        tokenLable.text = tencentOAuth.accessToken;
+    }
+    else
+    {
+        tokenLable.text = @"登录不成功 没有获取accesstoken";
+    }
+    
+}
+
+//非网络错误导致登录失败：
+-(void)tencentDidNotLogin:(BOOL)cancelled
+{
+    NSLog(@"tencentDidNotLogin");
+    if (cancelled)
+    {
+        resultLable.text = @"用户取消登录";
+    }else{
+        resultLable.text = @"登录失败";
+    }
+}
+// 网络错误导致登录失败：
+-(void)tencentDidNotNetWork
+{
+    NSLog(@"tencentDidNotNetWork");
+    resultLable.text = @"无网络连接，请设置网络";
+}
+
+-(void)getUserInfoResponse:(APIResponse *)response
+{
+    NSLog(@"respons:%@",response.jsonResponse);
+
+}
+
+
 
 #pragma mark - 功能框视图点击礼物按钮
 - (void)giftBtnAction:(UIButton *)button {

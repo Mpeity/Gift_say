@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemsModel.h"
 
 @interface CollectTableViewCell : UITableViewCell
 
+@property (nonatomic,strong) ItemsModel *itemModel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconImgView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end

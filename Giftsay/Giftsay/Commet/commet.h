@@ -9,6 +9,7 @@
 #ifndef commet_h
 #define commet_h
 
+#define TencentAPPId @"1104927539" // QQAppId
 
 
 // 所有接口
