@@ -1,0 +1,6 @@
+framework module Pods_Giftsay {
+  umbrella header "Pods-Giftsay-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -206,7 +206,6 @@ static NSString *cell_Id = @"cell_Id";
         }
         next = next.nextResponder;
     }
-    
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

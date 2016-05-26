@@ -237,6 +237,33 @@ static NSString *giftCell = @"giftCell";
     [_strategTableyView reloadData];
 }
 
+#pragma mark - 功能框视图点击礼物按钮
+- (void)giftBtnAction:(UIButton *)button {
+    _giftTableView.hidden = NO;
+//    [self.view addSubview:_giftTableView];
+    _strategTableyView.hidden = YES;
+    [_strategTableyView removeFromSuperview];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    CGFloat x = button.center.x;
+    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
+    [UIView commitAnimations];
+}
+
+#pragma mark - 功能框视图点击攻略按钮
+- (void)strategyBtnAction:(UIButton *)button {
+    [self _loadData];
+    _giftTableView.hidden = YES;
+    [_giftTableView removeFromSuperview];
+    [self.view addSubview:_strategTableyView];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.3];
+    CGFloat x = button.center.x;
+    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
+    [UIView commitAnimations];
+}
+
+
 
 
 #pragma mark - TableViewDelegate
@@ -252,12 +279,6 @@ static NSString *giftCell = @"giftCell";
 //        UITableViewCellStyleSubtitle    // 左上方显示textLabel，左下方显示detailTextLabel（默认灰色）,imageView可选（显示在最左边）
 //    };
     CollectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:giftCell forIndexPath:indexPath];
-//    cell.accessoryType = UITableViewCellStyleDefault;
-//        ItemsModel *itemsModel = [[ItemsModel alloc] init];
-//        itemsModel = self.countArray[indexPath.row];
-//    NSLog(@"%@",self.countArray);
-//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:itemsModel.cover_image_url]];
-//        cell.textLabel.text = itemsModel.title;
     cell.itemModel = self.countArray[indexPath.row];
 
     return cell;
@@ -273,7 +294,6 @@ static NSString *giftCell = @"giftCell";
     ItemsViewController *vc = [[ItemsViewController alloc] init];
     vc.itemsModel = itemsModel;
     [self presentViewController:vc animated:NO completion:nil];
-    
 }
 
 
@@ -355,31 +375,6 @@ static NSString *giftCell = @"giftCell";
 
 
 
-#pragma mark - 功能框视图点击礼物按钮
-- (void)giftBtnAction:(UIButton *)button {
-    _giftTableView.hidden = NO;
-    [self.view addSubview:_giftTableView];
-    _strategTableyView.hidden = YES;
-    [_strategTableyView removeFromSuperview];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.3];
-    CGFloat x = button.center.x;
-    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
-    [UIView commitAnimations];
-}
-
-#pragma mark - 功能框视图点击攻略按钮
-- (void)strategyBtnAction:(UIButton *)button {
-    [self _loadData];
-    _giftTableView.hidden = YES;
-    [_giftTableView removeFromSuperview];
-    [self.view addSubview:_strategTableyView];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.3];
-    CGFloat x = button.center.x;
-    _scrollImgView.center = CGPointMake(x, CGRectGetMaxY(_giftBtn.frame)-2);
-    [UIView commitAnimations];
-}
 
 
 

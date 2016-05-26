@@ -22,13 +22,6 @@
     return manager;
 }
 
-//- (instancetype)init {
-//    if (self = [super init]) {
-//        [self createDb];
-//    }
-//    return self;
-//}
-
 //@property (nonatomic,copy) NSString *title;
 //@property (nonatomic,copy) NSString *cover_image_url;
 //@property (nonatomic,assign) NSInteger identity; //
@@ -119,17 +112,13 @@
 - (void)readAllProvinces:(DBAllResultBlock)resultBlock {
     [self createDb];
     NSMutableArray *arrM = [NSMutableArray array];
-    
     [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        
         FMResultSet *resultSet = [db executeQuery:@"select * from t_collectFMDB"];
-        
         while (resultSet.next) {
-            
             BaseModel *baseModel = [[BaseModel  alloc] init];
+            baseModel.identity = [[resultSet stringForColumn:@"identity"] integerValue];
             baseModel.title = [resultSet stringForColumn:@"title"];
             baseModel.cover_image_url = [resultSet stringForColumn:@"coverImageUrl"];
-            baseModel.identity = [[resultSet stringForColumn:@"identity"] integerValue];
             baseModel.url = [resultSet stringForColumn:@"url"];
             [arrM addObject:baseModel];
 //            ItemsModel *baseModel = [[ItemsModel  alloc] init];
@@ -140,7 +129,6 @@
 //            [arrM addObject:baseModel];
         }
         [resultSet close];
-        
         resultBlock(db, YES, arrM);
     }];
 }
